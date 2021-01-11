@@ -1,31 +1,58 @@
+import React from "react";
 import Head from "next/head";
-import styles from "../styles/Home.module.css";
+import Link from "next/link";
+import axios from "axios";
 
 export default function Home() {
+  const [value, setValue] = React.useState("");
+
+  const onChangeValue = React.useCallback((e) => {
+    setValue(e.target.value);
+  }, []);
+
+  const onSubmit = React.useCallback(() => {
+    //
+  }, []);
+
   return (
-    <div className={styles.container}>
+    <div
+      style={{
+        display: "flex",
+        height: "100vh",
+        width: "100vw",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
       <Head>
-        <title>Create Next App</title>
+        <title>리디밀리 - E북 찾을땐</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>E-book을 찾아보세요!</h1>
-        <form>
-          <input />
+      <main>
+        <h1>E-book을 찾아보세요!</h1>
+        <form onSubmit={getSearchBook}>
+          <input
+            style={{ width: "320px", height: "32px" }}
+            value={value}
+            onChange={onChangeValue}
+          />
+          <Link href="/search">
+            <a>
+              <button
+                type="submit"
+                style={{
+                  height: "32px",
+                  backgroundColor: "skyblue",
+                  border: "none",
+                }}
+              >
+                검색하기
+              </button>
+            </a>
+          </Link>
         </form>
       </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{" "}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
     </div>
   );
 }

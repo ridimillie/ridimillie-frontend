@@ -10,6 +10,17 @@ export default function Home() {
     setValue(e.target.value);
   }, []);
 
+  const getSearchBook = async (e) => {
+    e.preventDefault();
+
+    try {
+      const { data } = await axios.get(`https://sopt27.ga/apis?query=${value}`);
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const onSubmit = React.useCallback(() => {
     //
   }, []);
@@ -37,20 +48,20 @@ export default function Home() {
             value={value}
             onChange={onChangeValue}
           />
-          <Link href="/search">
-            <a>
-              <button
-                type="submit"
-                style={{
-                  height: "32px",
-                  backgroundColor: "skyblue",
-                  border: "none",
-                }}
-              >
-                검색하기
-              </button>
-            </a>
-          </Link>
+          {/* <Link href="/search">
+            <a> */}
+          <button
+            type="submit"
+            style={{
+              height: "32px",
+              backgroundColor: "skyblue",
+              border: "none",
+            }}
+          >
+            검색하기
+          </button>
+          {/* </a>
+          </Link> */}
         </form>
       </main>
     </div>

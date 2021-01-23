@@ -5,6 +5,7 @@ import axios from "axios";
 import { debounce } from "lodash";
 import search from "./search";
 import Image from "next/image";
+import Loading from "../components/common/Loading";
 
 type BookType = {
   title: string;
@@ -12,39 +13,54 @@ type BookType = {
   description: string;
   image: string;
   isbn: number;
+  link: string;
 };
 
 export default function Home() {
   const [inputValue, setInputValue] = React.useState<string>("");
   const [searchResult, setSearchResult] = React.useState(null);
+  const [isLoading, setIsLoading] = React.useState<boolean>(false);
+
+  console.log("isLoading", isLoading);
 
   const getSearchBook = async () => {
     console.log("getSearchBook");
+    setIsLoading(true);
+
     try {
-      if (inputValue) {
-        const { data } = await axios.get(
-          `https://sopt27.ga/apis?query=${inputValue}`
-        );
-        console.log(data);
-        setSearchResult(data.refinedBooks);
-      }
+      const { data } = await axios.get(
+        `https://sopt27.ga/apis?query=${inputValue}`
+      );
+
+      console.log(data);
+      setSearchResult(data.refinedBooks);
+      setIsLoading(false);
     } catch (error) {
       console.error(error);
+      setIsLoading(false);
     }
   };
 
   const deboundedAPI = React.useCallback(
-    debounce(() => getSearchBook(), 2000),
+    debounce(() => {
+      getSearchBook();
+      setIsLoading(false);
+    }, 1000),
     [inputValue]
   );
 
-  const onDebounceChange = (e) => {
+  const onChange = (e) => {
     setInputValue(e.target.value);
   };
 
   React.useEffect(() => {
     console.log("useEffect");
-    deboundedAPI();
+
+    if (inputValue) {
+      setIsLoading(true);
+      deboundedAPI();
+    }
+
     return deboundedAPI.cancel;
   }, [inputValue]);
 
@@ -58,11 +74,10 @@ export default function Home() {
       <main>
         <h1>E-book을 찾아보세요!</h1>
         <form onSubmit={getSearchBook} style={{ marginBottom: "32px" }}>
-          {/* <form> */}
           <input
             style={{ width: "320px", height: "32px" }}
             value={inputValue}
-            onChange={onDebounceChange}
+            onChange={onChange}
           />
           {/* <Link href="/search">
             <a> */}
@@ -79,16 +94,23 @@ export default function Home() {
           {/* </a>
           </Link> */}
         </form>
-        {searchResult &&
+        {isLoading ? (
+          <Loading />
+        ) : (
+          searchResult &&
           searchResult.map((book: BookType) => {
             return (
-              <div>
+              <div key={book.isbn} style={{ marginBottom: "24px" }}>
                 <img src={book.image} alt={book.title} width={160} />
                 <div>{book.title}</div>
                 <div>{book.author}</div>
+                {/* <div>{book.description}</div> */}
+                {/* <div>{book.isbn}</div> */}
+                <a href={book.link}>Link</a>
               </div>
             );
-          })}
+          })
+        )}
       </main>
     </div>
   );

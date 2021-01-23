@@ -57,7 +57,7 @@ export default function Home() {
 
       <main>
         <h1>E-book을 찾아보세요!</h1>
-        <form onSubmit={getSearchBook}>
+        <form onSubmit={getSearchBook} style={{ marginBottom: "32px" }}>
           {/* <form> */}
           <input
             style={{ width: "320px", height: "32px" }}
@@ -82,13 +82,8 @@ export default function Home() {
         {searchResult &&
           searchResult.map((book: BookType) => {
             return (
-              <div style={{ backgroundColor: "yellow" }}>
-                <img
-                  src={book.image}
-                  alt={book.title}
-                  width={500}
-                  height={500}
-                />
+              <div>
+                <img src={book.image} alt={book.title} width={160} />
                 <div>{book.title}</div>
                 <div>{book.author}</div>
               </div>

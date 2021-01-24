@@ -1,12 +1,12 @@
-import React from "react";
-import Image from "next/image";
-import styled from "@emotion/styled";
+import React from 'react';
+import Image from 'next/image';
+import styled from '@emotion/styled';
 
 const LoadingImage = styled.img`
-  width: 180px;
-  height: 180px;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
-  animation: rotate_image 2.5s linear infinite;
+  animation: rotate_image 2s linear infinite;
   transform-origin: 50% 50%;
 
   @keyframes rotate_image {
@@ -24,8 +24,8 @@ function Loading() {
 
   return (
     <div>
-      {/* <LoadingImage src={`/assets/images/loading-image-${randomNumber}.jpg`} /> */}
-      <LoadingImage src={`/assets/images/loading-image-7.jpg`} />
+      <LoadingImage src={`/assets/images/loading-image-${randomNumber}.jpg`} />
+      {/* <LoadingImage src={`/assets/images/loading-image-4.jpg`} /> */}
     </div>
   );
 }

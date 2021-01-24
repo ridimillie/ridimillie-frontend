@@ -1,11 +1,6 @@
 import React from "react";
 import Head from "next/head";
 import Link from "next/link";
-import axios from "axios";
-import { debounce } from "lodash";
-import search from "./search";
-import Image from "next/image";
-import Loading from "../components/common/Loading";
 import styled from "@emotion/styled";
 
 const Styled = {
@@ -57,6 +52,10 @@ const Styled = {
     box-sizing: border-box;
     border-radius: 100px;
 
+    &:focus {
+      outline: none;
+    }
+
     @media (max-width: 768px) {
       height: 100%;
       width: 100%;
@@ -64,63 +63,7 @@ const Styled = {
   `,
 };
 
-type BookType = {
-  title: string;
-  author: string;
-  description: string;
-  image: string;
-  isbn: number;
-  link: string;
-};
-
-export default function Home() {
-  const [inputValue, setInputValue] = React.useState<string>("");
-  const [searchResult, setSearchResult] = React.useState(null);
-  const [isLoading, setIsLoading] = React.useState<boolean>(false);
-
-  console.log("isLoading", isLoading);
-
-  const getSearchBook = async () => {
-    console.log("getSearchBook");
-    setIsLoading(true);
-
-    try {
-      const { data } = await axios.get(
-        `https://sopt27.ga/apis?query=${inputValue}`
-      );
-
-      console.log(data);
-      setSearchResult(data.refinedBooks);
-      setIsLoading(false);
-    } catch (error) {
-      console.error(error);
-      setIsLoading(false);
-    }
-  };
-
-  const deboundedAPI = React.useCallback(
-    debounce(() => {
-      getSearchBook();
-      setIsLoading(false);
-    }, 1000),
-    [inputValue]
-  );
-
-  const onChange = (e) => {
-    setInputValue(e.target.value);
-  };
-
-  React.useEffect(() => {
-    console.log("useEffect");
-
-    if (inputValue) {
-      setIsLoading(true);
-      deboundedAPI();
-    }
-
-    return deboundedAPI.cancel;
-  }, [inputValue]);
-
+function Home() {
   return (
     <div>
       <Head>
@@ -138,27 +81,6 @@ export default function Home() {
           이책저책은 모든 e-book 구독 플랫폼과 판매 플랫폼의 검색결과를
           제공합니다.
         </Styled.SubCopy>
-        {/* <form onSubmit={getSearchBook}>
-          <input
-            style={{ width: "320px", height: "32px" }}
-            value={inputValue}
-            onChange={onChange}
-          />
-        </form>
-        {isLoading ? (
-          <Loading />
-        ) : (
-          searchResult &&
-          searchResult.map((book: BookType) => {
-            return (
-              <div key={book.isbn} style={{ marginBottom: "24px" }}>
-                <img src={book.image} alt={book.title} width={160} />
-                <div>{book.title}</div>
-                <div>{book.author}</div>
-              </div>
-            );
-          })
-        )} */}
         <Link href="/search">
           <Styled.InputWrapper>
             <a>
@@ -173,3 +95,5 @@ export default function Home() {
     </div>
   );
 }
+
+export default Home;

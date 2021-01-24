@@ -1,6 +1,13 @@
 import styled from "@emotion/styled";
 import Head from "next/head";
 import React from "react";
+import axios from "axios";
+import { debounce } from "lodash";
+import Loading from "../components/common/Loading";
+import Link from "next/link";
+import SearchResult from "../components/search/SearchResult";
+
+import Image from "next/image";
 
 const Styled = {
   Header: styled.div`
@@ -41,13 +48,65 @@ const Styled = {
     background-position: 0px 6px;
     background-repeat: no-repeat;
 
+    &:focus {
+      outline: none;
+    }
+
     &::placeholder {
       color: #bbc2b1;
     }
   `,
+  SearchResultWrapper: styled.div``,
 };
 
 function search() {
+  const [inputValue, setInputValue] = React.useState<string>("");
+  const [bookList, setBookList] = React.useState(null);
+  const [isLoading, setIsLoading] = React.useState<boolean>(false);
+
+  console.log("isLoading", isLoading);
+
+  const getSearchBook = async () => {
+    console.log("getSearchBook");
+    setIsLoading(true);
+
+    try {
+      const { data } = await axios.get(
+        `https://sopt27.ga/apis?query=${inputValue}`
+      );
+
+      console.log(data);
+      setBookList(data.refinedBooks);
+      setIsLoading(false);
+    } catch (error) {
+      console.error(error);
+      setIsLoading(false);
+    }
+  };
+
+  const deboundedAPI = React.useCallback(
+    debounce(() => {
+      getSearchBook();
+      setIsLoading(false);
+    }, 1000),
+    [inputValue]
+  );
+
+  const onChange = (e) => {
+    setInputValue(e.target.value);
+  };
+
+  React.useEffect(() => {
+    console.log("useEffect");
+
+    if (inputValue) {
+      setIsLoading(true);
+      deboundedAPI();
+    }
+
+    return deboundedAPI.cancel;
+  }, [inputValue]);
+
   return (
     <div>
       <Head>
@@ -55,11 +114,24 @@ function search() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Styled.Header>
-        <Styled.Logo src="/assets/images/logo.svg" />
+        <Link href="/">
+          <a>
+            <Styled.Logo src="/assets/images/logo.svg" />
+          </a>
+        </Link>
       </Styled.Header>
       <Styled.InputWrapper>
-        <Styled.Input type="text" placeholder="읽고 싶은 e-book을 검색하세요" />
+        <Styled.Input
+          type="text"
+          placeholder="읽고 싶은 e-book을 검색하세요"
+          autoComplete="off"
+          value={inputValue}
+          onChange={onChange}
+        />
       </Styled.InputWrapper>
+      <Styled.SearchResultWrapper>
+        {isLoading ? <Loading /> : <SearchResult bookList={bookList} />}
+      </Styled.SearchResultWrapper>
     </div>
   );
 }

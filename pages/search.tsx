@@ -11,6 +11,8 @@ import Image from "next/image";
 
 const Styled = {
   Header: styled.div`
+    background-color: #f8f5f1;
+
     @media (max-width: 768px) {
       position: fixed;
       top: 0;
@@ -26,6 +28,7 @@ const Styled = {
     }
   `,
   InputWrapper: styled.div`
+    background-color: #f8f5f1;
     position: fixed;
     top: 44px;
     width: 100%;
@@ -56,7 +59,11 @@ const Styled = {
       color: #bbc2b1;
     }
   `,
-  SearchResultWrapper: styled.div``,
+  SearchResultWrapper: styled.div`
+    margin-top: 158px;
+    width: 100%;
+    padding: 0 16px;
+  `,
 };
 
 function search() {

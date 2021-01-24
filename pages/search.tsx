@@ -78,10 +78,12 @@ function search() {
     setIsLoading(true);
 
     try {
-      const { data } = await axios.get(`https://sopt27.ga/apis?query=${inputValue}`);
+      const {
+        data: { data },
+      } = await axios.get(`https://sopt27.ga/apis?query=${inputValue}`);
 
       console.log(data);
-      setBookList(data.data);
+      setBookList(data);
       setIsLoading(false);
     } catch (error) {
       console.error(error);

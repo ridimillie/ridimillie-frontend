@@ -1,13 +1,13 @@
-import styled from "@emotion/styled";
-import Head from "next/head";
-import React from "react";
-import axios from "axios";
-import { debounce } from "lodash";
-import Loading from "../components/common/Loading";
-import Link from "next/link";
-import SearchResult from "../components/search/SearchResult";
+import styled from '@emotion/styled';
+import Head from 'next/head';
+import React from 'react';
+import axios from 'axios';
+import { debounce } from 'lodash';
+import Loading from '../components/common/Loading';
+import Link from 'next/link';
+import SearchResult from '../components/search/SearchResult';
 
-import Image from "next/image";
+import Image from 'next/image';
 
 const Styled = {
   Header: styled.div`
@@ -47,7 +47,7 @@ const Styled = {
     letter-spacing: -0.04em;
     caret-color: #ff8d78;
 
-    background-image: url("/assets/icons/search.svg");
+    background-image: url('/assets/icons/search.svg');
     background-position: 0px 6px;
     background-repeat: no-repeat;
 
@@ -67,23 +67,21 @@ const Styled = {
 };
 
 function search() {
-  const [inputValue, setInputValue] = React.useState<string>("");
+  const [inputValue, setInputValue] = React.useState<string>('');
   const [bookList, setBookList] = React.useState(null);
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
-  console.log("isLoading", isLoading);
+  console.log('isLoading', isLoading);
 
   const getSearchBook = async () => {
-    console.log("getSearchBook");
+    console.log('getSearchBook');
     setIsLoading(true);
 
     try {
-      const { data } = await axios.get(
-        `https://sopt27.ga/apis?query=${inputValue}`
-      );
+      const { data } = await axios.get(`https://sopt27.ga/apis?query=${inputValue}`);
 
       console.log(data);
-      setBookList(data.refinedBooks);
+      setBookList(data.data);
       setIsLoading(false);
     } catch (error) {
       console.error(error);
@@ -104,7 +102,7 @@ function search() {
   };
 
   React.useEffect(() => {
-    console.log("useEffect");
+    console.log('useEffect');
 
     if (inputValue) {
       setIsLoading(true);
@@ -118,20 +116,20 @@ function search() {
     <div>
       <Head>
         <title>검색 | 이책저책 </title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel='icon' href='/favicon.ico' />
       </Head>
       <Styled.Header>
-        <Link href="/">
+        <Link href='/'>
           <a>
-            <Styled.Logo src="/assets/images/logo.svg" />
+            <Styled.Logo src='/assets/images/logo.svg' />
           </a>
         </Link>
       </Styled.Header>
       <Styled.InputWrapper>
         <Styled.Input
-          type="text"
-          placeholder="읽고 싶은 e-book을 검색하세요"
-          autoComplete="off"
+          type='text'
+          placeholder='읽고 싶은 e-book을 검색하세요'
+          autoComplete='off'
           value={inputValue}
           onChange={onChange}
         />

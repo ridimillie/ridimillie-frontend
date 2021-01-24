@@ -44,6 +44,24 @@ const Styled = {
       margin-bottom: 52px;
     }
   `,
+  InputWrapper: styled.div`
+    @media (max-width: 768px) {
+      height: 70px;
+      padding: 10px 16px;
+      width: 100%;
+    }
+  `,
+  Input: styled.input`
+    background: rgba(255, 255, 255, 0.6);
+    border: 3px solid rgba(255, 255, 255, 0.8);
+    box-sizing: border-box;
+    border-radius: 100px;
+
+    @media (max-width: 768px) {
+      height: 100%;
+      width: 100%;
+    }
+  `,
 };
 
 type BookType = {
@@ -120,7 +138,7 @@ export default function Home() {
           이책저책은 모든 e-book 구독 플랫폼과 판매 플랫폼의 검색결과를
           제공합니다.
         </Styled.SubCopy>
-        <form onSubmit={getSearchBook} style={{ marginBottom: "32px" }}>
+        {/* <form onSubmit={getSearchBook}>
           <input
             style={{ width: "320px", height: "32px" }}
             value={inputValue}
@@ -137,13 +155,20 @@ export default function Home() {
                 <img src={book.image} alt={book.title} width={160} />
                 <div>{book.title}</div>
                 <div>{book.author}</div>
-                {/* <div>{book.description}</div> */}
-                {/* <div>{book.isbn}</div> */}
-                <a href={book.link}>Link</a>
               </div>
             );
           })
-        )}
+        )} */}
+        <Link href="/search">
+          <Styled.InputWrapper>
+            <a>
+              <Styled.Input
+                type="text"
+                placeholder="읽고 싶은 e-book을 검색하세요."
+              />
+            </a>
+          </Styled.InputWrapper>
+        </Link>
       </Styled.MainWrapper>
     </div>
   );

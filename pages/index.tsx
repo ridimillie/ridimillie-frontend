@@ -52,6 +52,7 @@ const Styled = {
     box-sizing: border-box;
     border-radius: 100px;
     -webkit-appearance: none;
+    text-align: center;
 
     &:focus {
       outline: none;

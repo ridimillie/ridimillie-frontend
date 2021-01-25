@@ -5,6 +5,7 @@ import axios from 'axios';
 import { debounce } from 'lodash';
 import Loading from '../components/common/Loading';
 import Link from 'next/link';
+import FastSearchResult from '../components/search/FastSearchResult';
 import SearchResult from '../components/search/SearchResult';
 import Image from 'next/image';
 import { BookType } from '../types';
@@ -83,11 +84,14 @@ function Search() {
   const [inputValue, setInputValue] = React.useState<string>('');
   const [bookList, setBookList] = React.useState<BookType[]>([]);
   const [searchState, setSearchState] = React.useState<string>(IDLE);
+  const [isSearchCompleted, setIsSearchCompleted] = React.useState<boolean>(false);
   const inputRef = React.useRef<HTMLInputElement | null>(null);
 
   const router = useRouter();
-  const { query } = router;
-  console.log('query', query);
+  const {
+    query: { q },
+  } = router;
+  console.log('query', q);
 
   console.log('searchState', searchState);
 
@@ -116,6 +120,7 @@ function Search() {
   );
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setIsSearchCompleted(false);
     setInputValue(e.target.value);
   };
 
@@ -123,6 +128,7 @@ function Search() {
     e.preventDefault();
 
     Router.push(`/search?q=${inputValue.trim()}`);
+    setIsSearchCompleted(true);
   };
 
   React.useEffect(() => {
@@ -167,7 +173,12 @@ function Search() {
       <Styled.SearchResultWrapper>
         {searchState === IDLE && <RecentSearch />}
         {searchState === LOADING && <Loading />}
-        {searchState === RESOLVED && bookList.length !== 0 && <SearchResult bookList={bookList} />}
+        {searchState === RESOLVED && bookList.length !== 0 && !isSearchCompleted && (
+          <FastSearchResult bookList={bookList} />
+        )}
+        {searchState === RESOLVED && bookList.length !== 0 && isSearchCompleted && (
+          <SearchResult bookList={bookList} />
+        )}
         {searchState === RESOLVED && bookList.length === 0 && <NoResult />}
         {searchState === REJECTED && <SearchError />}
       </Styled.SearchResultWrapper>

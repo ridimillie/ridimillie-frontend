@@ -4,12 +4,9 @@ import { BookType } from '../../types';
 const Styled = {
   bookWrapper: styled.div`
     width: 100%;
-    background-color: white;
-    box-shadow: 4px 4px 6px rgba(146, 154, 136, 0.05);
-    border-radius: 10px;
+    border-bottom: 1px solid #bbc2b1;
     display: flex;
     padding: 14px 16px;
-    margin: 8px 0;
   `,
   Info: styled.div`
     display: flex;
@@ -33,7 +30,7 @@ interface Props {
   bookList: BookType[];
 }
 
-function SearchResult({ bookList }: Props) {
+function FastSearchResult({ bookList }: Props) {
   const removeHTML = (text: string) => {
     text = text.replace(/<(\/)?([a-zA-Z]*)(\s[a-zA-Z]*=[^>]*)?(\s)*(\/)?>/gi, '');
     return text;
@@ -65,4 +62,4 @@ function SearchResult({ bookList }: Props) {
   );
 }
 
-export default SearchResult;
+export default FastSearchResult;

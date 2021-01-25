@@ -27,22 +27,40 @@ const Styled = {
   `,
 };
 
-type Props = {
-  bookList: Array<BookType>;
-};
+interface Props {
+  bookList: Array<BookType> | null;
+}
 
-const SearchResult = ({ bookList }) => {
-  return bookList
-    ? bookList.map((book: BookType) => (
-        <Styled.bookWrapper key={book.isbn}>
-          <img src={book.image} alt={book.title} />
-          <Styled.Info>
-            <Styled.Title>{book.title}</Styled.Title>
-            <Styled.Description>{`${book.author} | ${book.publisher}`}</Styled.Description>
-          </Styled.Info>
-        </Styled.bookWrapper>
-      ))
-    : null;
-};
+function SearchResult({ bookList }: Props) {
+  const removeHTML = (text: string) => {
+    text = text.replace(/<(\/)?([a-zA-Z]*)(\s[a-zA-Z]*=[^>]*)?(\s)*(\/)?>/gi, '');
+    return text;
+  };
+
+  const refinedBookList: Array<BookType> | undefined = bookList?.map((book: BookType) => {
+    return {
+      ...book,
+      title: removeHTML(book.title),
+      author: removeHTML(book.author),
+      publisher: removeHTML(book.publisher),
+    };
+  });
+
+  return (
+    <>
+      {refinedBookList
+        ? refinedBookList.map((book: BookType) => (
+            <Styled.bookWrapper key={book.isbn}>
+              <img src={book.image} alt={book.title} />
+              <Styled.Info>
+                <Styled.Title>{book.title}</Styled.Title>
+                <Styled.Description>{`${book.author} | ${book.publisher}`}</Styled.Description>
+              </Styled.Info>
+            </Styled.bookWrapper>
+          ))
+        : null}
+    </>
+  );
+}
 
 export default SearchResult;

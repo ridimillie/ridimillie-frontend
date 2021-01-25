@@ -8,10 +8,11 @@ import Link from 'next/link';
 import SearchResult from '../components/search/SearchResult';
 
 import Image from 'next/image';
+import { BookType } from '../types';
 
 const Styled = {
   Header: styled.div`
-    background-color: #f8f5f1;
+    background-color: #f7f2e4;
 
     @media (max-width: 768px) {
       position: fixed;
@@ -28,7 +29,7 @@ const Styled = {
     }
   `,
   InputWrapper: styled.div`
-    background-color: #f8f5f1;
+    background-color: #f7f2e4;
     position: fixed;
     top: 44px;
     width: 100%;
@@ -68,7 +69,7 @@ const Styled = {
 
 function search() {
   const [inputValue, setInputValue] = React.useState<string>('');
-  const [bookList, setBookList] = React.useState(null);
+  const [bookList, setBookList] = React.useState<Array<BookType> | null>(null);
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
   console.log('isLoading', isLoading);
@@ -99,13 +100,11 @@ function search() {
     [inputValue]
   );
 
-  const onChange = (e) => {
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
   };
 
   React.useEffect(() => {
-    console.log('useEffect');
-
     if (inputValue) {
       setIsLoading(true);
       deboundedAPI();

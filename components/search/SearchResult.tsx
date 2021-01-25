@@ -28,7 +28,7 @@ const Styled = {
 };
 
 interface Props {
-  bookList: Array<BookType> | null;
+  bookList: BookType[];
 }
 
 function SearchResult({ bookList }: Props) {
@@ -50,7 +50,7 @@ function SearchResult({ bookList }: Props) {
     <>
       {refinedBookList
         ? refinedBookList.map((book: BookType) => (
-            <Styled.bookWrapper key={book.isbn}>
+            <Styled.bookWrapper key={book.bid}>
               <img src={book.image} alt={book.title} />
               <Styled.Info>
                 <Styled.Title>{book.title}</Styled.Title>

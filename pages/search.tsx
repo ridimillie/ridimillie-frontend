@@ -6,9 +6,11 @@ import { debounce } from 'lodash';
 import Loading from '../components/common/Loading';
 import Link from 'next/link';
 import SearchResult from '../components/search/SearchResult';
-
 import Image from 'next/image';
 import { BookType } from '../types';
+import RecentSearch from '../components/search/RecentSearch';
+import SearchError from '../components/search/SearchError';
+import NoResult from '../components/search/NoResult';
 
 const Styled = {
   Header: styled.div`
@@ -67,35 +69,38 @@ const Styled = {
   `,
 };
 
-function search() {
-  const [inputValue, setInputValue] = React.useState<string>('');
-  const [bookList, setBookList] = React.useState<Array<BookType> | null>(null);
-  const [isLoading, setIsLoading] = React.useState<boolean>(false);
+const IDLE = 'idle';
+const LOADING = 'loading';
+const RESOLVED = 'resolved';
+const REJECTED = 'rejected';
 
-  console.log('isLoading', isLoading);
+function Search() {
+  const [inputValue, setInputValue] = React.useState<string>('');
+  const [bookList, setBookList] = React.useState<BookType[]>([]);
+  const [searchState, setSearchState] = React.useState<string>(IDLE);
+
+  console.log('searchState', searchState);
 
   const getSearchBook = async () => {
     console.log('getSearchBook');
-    setIsLoading(true);
+    setSearchState(LOADING);
 
     try {
       const {
         data: { data },
       } = await axios.get(`https://sopt27.ga/apis?query=${inputValue}`);
 
-      console.log(data);
       setBookList(data);
-      setIsLoading(false);
+      setSearchState(RESOLVED);
     } catch (error) {
       console.error(error);
-      setIsLoading(false);
+      setSearchState(REJECTED);
     }
   };
 
   const deboundedAPI = React.useCallback(
     debounce(() => {
       getSearchBook();
-      setIsLoading(false);
     }, 1000),
     [inputValue]
   );
@@ -105,9 +110,11 @@ function search() {
   };
 
   React.useEffect(() => {
-    if (inputValue) {
-      setIsLoading(true);
+    if (inputValue !== '') {
+      setSearchState(LOADING);
       deboundedAPI();
+    } else {
+      setSearchState('idle');
     }
 
     return deboundedAPI.cancel;
@@ -136,10 +143,14 @@ function search() {
         />
       </Styled.InputWrapper>
       <Styled.SearchResultWrapper>
-        {isLoading ? <Loading /> : <SearchResult bookList={bookList} />}
+        {searchState === IDLE && <RecentSearch />}
+        {searchState === LOADING && <Loading />}
+        {searchState === RESOLVED && bookList.length !== 0 && <SearchResult bookList={bookList} />}
+        {searchState === RESOLVED && bookList.length === 0 && <NoResult />}
+        {searchState === REJECTED && <SearchError />}
       </Styled.SearchResultWrapper>
     </div>
   );
 }
 
-export default search;
+export default Search;

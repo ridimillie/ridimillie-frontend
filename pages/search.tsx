@@ -11,6 +11,7 @@ import { BookType } from '../types';
 import RecentSearch from '../components/search/RecentSearch';
 import SearchError from '../components/search/SearchError';
 import NoResult from '../components/search/NoResult';
+import Router, { useRouter } from 'next/router';
 
 const Styled = {
   Header: styled.div`
@@ -30,7 +31,7 @@ const Styled = {
       height: 20px;
     }
   `,
-  InputWrapper: styled.form`
+  Form: styled.form`
     background-color: #f7f2e4;
     position: fixed;
     top: 44px;
@@ -82,6 +83,11 @@ function Search() {
   const [inputValue, setInputValue] = React.useState<string>('');
   const [bookList, setBookList] = React.useState<BookType[]>([]);
   const [searchState, setSearchState] = React.useState<string>(IDLE);
+  const inputRef = React.useRef<HTMLInputElement | null>(null);
+
+  const router = useRouter();
+  const { query } = router;
+  console.log('query', query);
 
   console.log('searchState', searchState);
 
@@ -92,7 +98,7 @@ function Search() {
     try {
       const {
         data: { data },
-      } = await axios.get(`https://sopt27.ga/apis?query=${inputValue}`);
+      } = await axios.get(`https://sopt27.ga/apis?query=${inputValue.trim()}`);
 
       setBookList(data);
       setSearchState(RESOLVED);
@@ -113,7 +119,15 @@ function Search() {
     setInputValue(e.target.value);
   };
 
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    Router.push(`/search?q=${inputValue.trim()}`);
+  };
+
   React.useEffect(() => {
+    inputRef.current?.focus();
+
     if (inputValue !== '') {
       setSearchState(LOADING);
       deboundedAPI();
@@ -141,14 +155,15 @@ function Search() {
           </a>
         </Link>
       </Styled.Header>
-      <Styled.InputWrapper>
+      <Styled.Form onSubmit={onSubmit}>
         <Styled.Input
           type='text'
           placeholder='읽고 싶은 e-book을 검색하세요'
           value={inputValue}
           onChange={onChange}
+          ref={inputRef}
         />
-      </Styled.InputWrapper>
+      </Styled.Form>
       <Styled.SearchResultWrapper>
         {searchState === IDLE && <RecentSearch />}
         {searchState === LOADING && <Loading />}

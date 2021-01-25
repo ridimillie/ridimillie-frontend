@@ -66,7 +66,7 @@ const Styled = {
     }
   `,
   SearchResultWrapper: styled.div`
-    margin-top: 158px;
+    margin-top: 120px;
     width: 100%;
     padding: 0 16px;
   `,
@@ -150,11 +150,12 @@ function Search() {
         />
       </Styled.InputWrapper>
       <Styled.SearchResultWrapper>
-        {searchState === IDLE && <RecentSearch />}
+        {/* {searchState === IDLE && <RecentSearch />}
         {searchState === LOADING && <Loading />}
         {searchState === RESOLVED && bookList.length !== 0 && <SearchResult bookList={bookList} />}
         {searchState === RESOLVED && bookList.length === 0 && <NoResult />}
-        {searchState === REJECTED && <SearchError />}
+        {searchState === REJECTED && <SearchError />} */}
+        <Loading />
       </Styled.SearchResultWrapper>
     </div>
   );

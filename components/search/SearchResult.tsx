@@ -15,7 +15,7 @@ const Styled = {
     padding: 9px 16px;
   `,
   Title: styled.div`
-    margin-bottom: 3px;
+    margin-bottom: 4px;
     color: #ff8d78;
     font-weight: 700;
     font-size: 14px;

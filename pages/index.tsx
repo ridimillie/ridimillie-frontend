@@ -1,7 +1,7 @@
-import React from "react";
-import Head from "next/head";
-import Link from "next/link";
-import styled from "@emotion/styled";
+import React from 'react';
+import Head from 'next/head';
+import Link from 'next/link';
+import styled from '@emotion/styled';
 
 const Styled = {
   MainWrapper: styled.main`
@@ -51,6 +51,7 @@ const Styled = {
     border: 3px solid rgba(255, 255, 255, 0.8);
     box-sizing: border-box;
     border-radius: 100px;
+    -webkit-appearance: none;
 
     &:focus {
       outline: none;
@@ -68,26 +69,20 @@ function Home() {
     <div>
       <Head>
         <title>이책저책 - e-book 찾을땐</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel='icon' href='/favicon.ico' />
       </Head>
       <Styled.MainWrapper>
         <Styled.Header>
-          <Styled.Logo src="/assets/images/logo.svg" />
+          <Styled.Logo src='/assets/images/logo.svg' />
         </Styled.Header>
-        <Styled.MainCopy>
-          원하는 e-book이 어디에 있는지 이곳저곳 돌아다니지 마세요.
-        </Styled.MainCopy>
+        <Styled.MainCopy>원하는 e-book이 어디에 있는지 이곳저곳 돌아다니지 마세요.</Styled.MainCopy>
         <Styled.SubCopy>
-          이책저책은 모든 e-book 구독 플랫폼과 판매 플랫폼의 검색결과를
-          제공합니다.
+          이책저책은 모든 e-book 구독 플랫폼과 판매 플랫폼의 검색결과를 제공합니다.
         </Styled.SubCopy>
-        <Link href="/search">
+        <Link href='/search'>
           <Styled.InputWrapper>
             <a>
-              <Styled.Input
-                type="text"
-                placeholder="읽고 싶은 e-book을 검색하세요."
-              />
+              <Styled.Input type='text' placeholder='읽고 싶은 e-book을 검색하세요.' />
             </a>
           </Styled.InputWrapper>
         </Link>

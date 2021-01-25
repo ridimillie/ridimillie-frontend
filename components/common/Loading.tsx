@@ -2,19 +2,27 @@ import React from 'react';
 import Image from 'next/image';
 import styled from '@emotion/styled';
 
-const LoadingImage = styled.img`
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  animation: rotate_image 2s linear infinite;
-  transform-origin: 50% 50%;
+const Styled = {
+  LoadingWrapper: styled.div`
+    display: flex;
+    justify-content: center;
+  `,
 
-  @keyframes rotate_image {
-    100% {
-      transform: rotate(360deg);
+  LoadingImage: styled.img`
+    width: 80px;
+    height: 80px;
+    margin-top: 40px;
+    border-radius: 50%;
+    animation: rotate_image 2s linear infinite;
+    transform-origin: 50% 50%;
+
+    @keyframes rotate_image {
+      100% {
+        transform: rotate(360deg);
+      }
     }
-  }
-`;
+  `,
+};
 
 function Loading() {
   const max: number = 7;
@@ -23,10 +31,10 @@ function Loading() {
   const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
 
   return (
-    <div>
+    <Styled.LoadingWrapper>
       {/* <LoadingImage src={`/assets/images/loading-image-${randomNumber}.jpg`} /> */}
-      <LoadingImage src={`/assets/images/loading-image-3.jpg`} />
-    </div>
+      <Styled.LoadingImage src={`/assets/images/loading-image-3.jpg`} />
+    </Styled.LoadingWrapper>
   );
 }
 

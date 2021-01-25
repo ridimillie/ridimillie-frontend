@@ -63,7 +63,9 @@ const Styled = {
   Contents: styled.div`
     margin: 24px 32px;
   `,
-  Ebooks: styled.div``,
+  Ebooks: styled.div`
+    margin-top: 24px;
+  `,
 };
 
 function Book() {
@@ -126,13 +128,13 @@ function Book() {
       )}
       <Styled.Contents>
         <Styled.Ebooks>
-          <div>구독</div>
+          <div style={{ marginBottom: '8px' }}>구독</div>
           <EbookLinkButton />
           <EbookLinkButton />
           <EbookLinkButton />
         </Styled.Ebooks>
         <Styled.Ebooks>
-          <div>구매</div>
+          <div style={{ marginBottom: '8px' }}>구매</div>
           <EbookLinkButton />
           <EbookLinkButton />
           <EbookLinkButton />

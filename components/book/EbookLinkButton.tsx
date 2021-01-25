@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 const Styled = {
   Box: styled.div`
     width: 100%;
-    margin: 4px 0;
+    margin: 8px 0;
     padding: 10px 16px;
     background-color: white;
     border-radius: 12px;

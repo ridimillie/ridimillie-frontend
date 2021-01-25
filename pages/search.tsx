@@ -69,6 +69,7 @@ const Styled = {
   `,
 };
 
+/** searchState */
 const IDLE = 'idle';
 const LOADING = 'loading';
 const RESOLVED = 'resolved';

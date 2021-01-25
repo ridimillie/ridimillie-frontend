@@ -24,8 +24,8 @@ function Loading() {
 
   return (
     <div>
-      <LoadingImage src={`/assets/images/loading-image-${randomNumber}.jpg`} />
-      {/* <LoadingImage src={`/assets/images/loading-image-4.jpg`} /> */}
+      {/* <LoadingImage src={`/assets/images/loading-image-${randomNumber}.jpg`} /> */}
+      <LoadingImage src={`/assets/images/loading-image-3.jpg`} />
     </div>
   );
 }

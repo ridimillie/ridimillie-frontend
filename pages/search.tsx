@@ -30,7 +30,7 @@ const Styled = {
       height: 20px;
     }
   `,
-  InputWrapper: styled.div`
+  InputWrapper: styled.form`
     background-color: #f7f2e4;
     position: fixed;
     top: 44px;
@@ -45,10 +45,13 @@ const Styled = {
     border: none;
     border-bottom: 2px solid #000000;
     padding-left: 34px;
-    font-size: 14px;
+    font-size: 16px;
     line-height: 100%;
     letter-spacing: -0.04em;
     caret-color: #ff8d78;
+    -webkit-appearance: none;
+    border-radius: 0;
+    -webkit-border-radius: 0;
 
     background-image: url('/assets/icons/search.svg');
     background-position: 0px 6px;
@@ -126,6 +129,10 @@ function Search() {
       <Head>
         <title>검색 | 이책저책 </title>
         <link rel='icon' href='/favicon.ico' />
+        <meta
+          name='viewport'
+          content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width'
+        />
       </Head>
       <Styled.Header>
         <Link href='/'>
@@ -138,7 +145,6 @@ function Search() {
         <Styled.Input
           type='text'
           placeholder='읽고 싶은 e-book을 검색하세요'
-          autoComplete='off'
           value={inputValue}
           onChange={onChange}
         />

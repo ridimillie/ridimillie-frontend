@@ -150,12 +150,11 @@ function Search() {
         />
       </Styled.InputWrapper>
       <Styled.SearchResultWrapper>
-        {/* {searchState === IDLE && <RecentSearch />}
+        {searchState === IDLE && <RecentSearch />}
         {searchState === LOADING && <Loading />}
         {searchState === RESOLVED && bookList.length !== 0 && <SearchResult bookList={bookList} />}
         {searchState === RESOLVED && bookList.length === 0 && <NoResult />}
-        {searchState === REJECTED && <SearchError />} */}
-        <Loading />
+        {searchState === REJECTED && <SearchError />}
       </Styled.SearchResultWrapper>
     </div>
   );

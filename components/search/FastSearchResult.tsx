@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import Router from 'next/router';
 import { BookType } from '../../types';
 
 const Styled = {
@@ -45,11 +46,15 @@ function FastSearchResult({ bookList }: Props) {
     };
   });
 
+  const handleClick = (isbn: string) => {
+    Router.push(`/book?isbn=${isbn}`);
+  };
+
   return (
     <>
       {refinedBookList
         ? refinedBookList.map((book: BookType) => (
-            <Styled.bookWrapper key={book.bid}>
+            <Styled.bookWrapper key={book.bid} onClick={() => handleClick(book.isbn)}>
               <img src={book.image} alt={book.title} />
               <Styled.Info>
                 <Styled.Title>{book.title}</Styled.Title>

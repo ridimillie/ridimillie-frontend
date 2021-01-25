@@ -88,15 +88,9 @@ function Search() {
   const inputRef = React.useRef<HTMLInputElement | null>(null);
 
   const router = useRouter();
-  const {
-    query: { q },
-  } = router;
-  console.log('query', q);
-
-  console.log('searchState', searchState);
+  const { q } = router.query;
 
   const getSearchBook = async () => {
-    console.log('getSearchBook');
     setSearchState(LOADING);
 
     try {
@@ -119,12 +113,12 @@ function Search() {
     [inputValue]
   );
 
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setIsSearchCompleted(false);
     setInputValue(e.target.value);
   };
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     Router.push(`/search?q=${inputValue.trim()}`);
@@ -161,12 +155,12 @@ function Search() {
           </a>
         </Link>
       </Styled.Header>
-      <Styled.Form onSubmit={onSubmit}>
+      <Styled.Form onSubmit={handleSubmit}>
         <Styled.Input
           type='text'
           placeholder='읽고 싶은 e-book을 검색하세요'
           value={inputValue}
-          onChange={onChange}
+          onChange={handleChange}
           ref={inputRef}
         />
       </Styled.Form>

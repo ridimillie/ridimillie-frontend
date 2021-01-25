@@ -103,7 +103,11 @@ function Book() {
             <Styled.Logo src='/assets/images/logo.svg' />
           </a>
         </Link>
-        <Styled.SearchIcon src='/assets/icons/search.svg' />
+        <Link href='/search'>
+          <a>
+            <Styled.SearchIcon src='/assets/icons/search.svg' />
+          </a>
+        </Link>
       </Styled.Header>
       {isLoading ? (
         <Loading />

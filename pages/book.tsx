@@ -34,11 +34,12 @@ function Book() {
 
   const router = useRouter();
   const { isbn } = router.query;
-  console.log('isbn', isbn);
 
   React.useEffect(() => {
     const getSearchBook = async () => {
       setIsLoading(true);
+      console.log('api');
+      console.log('isbn', isbn);
 
       try {
         const {
@@ -54,9 +55,10 @@ function Book() {
     };
 
     getSearchBook();
-  }, []);
+  }, [isbn]);
 
-  console.log('book[0] :>> ', book[0]);
+  console.log('isbn', isbn);
+  console.log('book[0]', book[0]);
 
   return (
     <div>

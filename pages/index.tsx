@@ -51,9 +51,6 @@ const Styled = {
     border: 3px solid rgba(255, 255, 255, 0.8);
     box-sizing: border-box;
     border-radius: 100px;
-    -webkit-appearance: none;
-    text-align: center;
-    font-size: 16px;
 
     &:focus {
       outline: none;
@@ -72,10 +69,6 @@ function Home() {
       <Head>
         <title>이책저책 - e-book 찾을땐</title>
         <link rel='icon' href='/favicon.ico' />
-        <meta
-          name='viewport'
-          content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width'
-        />
       </Head>
       <Styled.MainWrapper>
         <Styled.Header>

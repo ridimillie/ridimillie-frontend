@@ -17,7 +17,7 @@ import Router, { useRouter } from 'next/router';
 const Styled = {
   Header: styled.div`
     background-color: #f7f2e4;
-
+    z-index: 1;
     @media (max-width: 768px) {
       position: fixed;
       top: 0;
@@ -33,6 +33,7 @@ const Styled = {
     }
   `,
   Form: styled.form`
+    z-index: 1;
     background-color: #f7f2e4;
     position: fixed;
     top: 44px;

@@ -44,7 +44,19 @@ const Styled = {
       text-align: center;
       /* sub / greengray2 */
       color: #929a88;
+      margin-bottom: 98px;
     }
+  `,
+  Description: styled.div`
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 20px;
+    /* or 14px */
+    text-align: center;
+    /* sub / greenblack2 */
+    color: #2d3029;
+    padding: 42px 0;
+    margin-bottom: 66px;
   `,
 };
 
@@ -67,6 +79,11 @@ function Introduction() {
       <Styled.SubCopy>
         e-book 구독 및 구매 서비스 6곳의 실시간 검색 결과를 제공합니다.
       </Styled.SubCopy>
+      <Styled.Description>
+        읽고 싶은 책이 생기면
+        <br />
+        '이책 저책'에서 가장 먼저 찾아보세요.
+      </Styled.Description>
     </Styled.IntroductionWrapper>
   );
 }

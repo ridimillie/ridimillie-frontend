@@ -1,7 +1,7 @@
 import React from 'react';
 
 function RecentSearch() {
-  return <div>RecentSearch</div>;
+  return <div />;
 }
 
 export default RecentSearch;

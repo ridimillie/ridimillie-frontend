@@ -8,22 +8,27 @@ const Styled = {
     width: 100%;
     border-bottom: 1px solid #bbc2b1;
     display: flex;
-    padding: 14px 16px;
+    padding: 12px 16px;
+
+    img {
+      width: 30px;
+      object-fit: contain;
+    }
   `,
   Info: styled.div`
     display: flex;
     flex-direction: column;
-    padding: 9px 16px;
+    padding-left: 16px;
   `,
   Title: styled.div`
     margin-bottom: 4px;
     color: #ff8d78;
     font-weight: 700;
-    font-size: 14px;
+    font-size: 12px;
   `,
   Description: styled.div`
     font-weight: 400;
-    font-size: 12px;
+    font-size: 10px;
     color: #929a88;
   `,
 };

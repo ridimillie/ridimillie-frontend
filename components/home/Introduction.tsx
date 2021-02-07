@@ -9,6 +9,7 @@ const Styled = {
       flex-direction: column;
 
       align-items: center;
+      margin-bottom: 600px;
     }
   `,
   MainCopy: styled.div`

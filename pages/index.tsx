@@ -4,6 +4,7 @@ import styled from '@emotion/styled';
 import Main from '../components/home/Main';
 import MainInput from '../components/home/MainInput';
 import Introduction from '../components/home/Introduction';
+import Footer from '../components/home/Footer';
 
 const Styled = {
   Header: styled.div`
@@ -14,6 +15,7 @@ const Styled = {
       width: 100%;
       display: flex;
       justify-content: center;
+      background: #f7f2e4;
     }
   `,
   Logo: styled.img`
@@ -21,9 +23,37 @@ const Styled = {
       height: 20px;
     }
   `,
+  ScrollToTopBtn: styled.div`
+    position: fixed;
+    bottom: 32px;
+    right: 16px;
+    width: 26px;
+    height: 42px;
+    /* sub / greengray3 */
+    background: #bbc2b1;
+    border-radius: 20px;
+  `,
 };
 
 function Home() {
+  const [showScroll, setShowScroll] = React.useState(false);
+
+  React.useEffect(() => {
+    const checkScrollTop = () => {
+      if (!showScroll && window.pageYOffset > 400) {
+        setShowScroll(true);
+      } else if (showScroll && window.pageYOffset <= 400) {
+        setShowScroll(false);
+      }
+    };
+
+    window.addEventListener('scroll', checkScrollTop);
+  }, []);
+
+  const scrollTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <>
       <Head>
@@ -36,6 +66,8 @@ function Home() {
       <Main />
       <MainInput />
       <Introduction />
+      <Footer />
+      <Styled.ScrollToTopBtn onClick={scrollTop}>위로</Styled.ScrollToTopBtn>
     </>
   );
 }

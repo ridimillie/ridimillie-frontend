@@ -12,13 +12,14 @@ const Styled = {
 
     img {
       width: 30px;
-      object-fit: contain;
+      /* object-fit: contain; */
+      height: 45px;
     }
   `,
   Info: styled.div`
     display: flex;
     flex-direction: column;
-    padding: 12px;
+    padding-left: 16px;
   `,
   Title: styled.div`
     margin-bottom: 4px;

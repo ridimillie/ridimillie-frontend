@@ -97,7 +97,7 @@ function Search() {
     try {
       const {
         data: { data },
-      } = await axios.get(`https://sopt27.ga/api?query=${inputValue.trim()}`);
+      } = await axios.get(`https://sopt27.ga/apis?query=${inputValue.trim()}`);
 
       setBookList(data);
       setSearchState(RESOLVED);

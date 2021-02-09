@@ -50,7 +50,7 @@ const Styled = {
     text-align: center;
     padding: 8px 0;
     border: solid 1px;
-    border-radius: 20px;
+    border-radius: 4px;
     background: none;
     outline: 0;
   `,

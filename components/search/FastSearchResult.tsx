@@ -17,16 +17,20 @@ const Styled = {
     }
   `,
   Info: styled.div`
-    display: flex;
-    flex-direction: column;
     justify-content: center;
     padding-left: 16px;
+    overflow: hidden;
+    width: calc(100% - 30px);
   `,
+
   Title: styled.div`
     margin-bottom: 4px;
     color: #ff8d78;
     font-weight: 700;
     font-size: 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   `,
   Description: styled.div`
     font-weight: 400;

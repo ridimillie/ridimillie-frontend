@@ -5,6 +5,7 @@ import Main from '../components/home/Main';
 import MainInput from '../components/home/MainInput';
 import Introduction from '../components/home/Introduction';
 import Footer from '../components/home/Footer';
+import Author from '../components/home/Authors';
 
 const Styled = {
   Header: styled.div`
@@ -16,6 +17,7 @@ const Styled = {
       display: flex;
       justify-content: center;
       background: #f7f2e4;
+      z-index: 999;
     }
   `,
   Logo: styled.img`
@@ -32,6 +34,12 @@ const Styled = {
     /* sub / greengray3 */
     background: #bbc2b1;
     border-radius: 20px;
+  `,
+  AuthorWrapper: styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   `,
 };
 
@@ -66,6 +74,38 @@ function Home() {
       <Main />
       <MainInput />
       <Introduction />
+      <Styled.AuthorWrapper>
+        <Author
+          part='기획'
+          name='김한솔'
+          word='밀리 구독자면서 리디북스에서 책을 구매하고 주기적으로 교보문고를 방문해요.'
+        />
+        <Author
+          part='디자인'
+          name='배민주'
+          word='밀리 구독자면서 리디북스에서 책을 구매하고 주기적으로 교보문고를 방문해요.'
+        />
+        <Author
+          part='프론트엔드'
+          name='이정연'
+          word='밀리 구독자면서 리디북스에서 책을 구매하고 주기적으로 교보문고를 방문해요.'
+        />
+        <Author
+          part='프론트엔드'
+          name='유희수'
+          word='밀리 구독자면서 리디북스에서 책을 구매하고 주기적으로 교보문고를 방문해요.'
+        />
+        <Author
+          part='백엔드, 프론트엔드'
+          name='홍준엽'
+          word='밀리 구독자면서 리디북스에서 책을 구매하고 주기적으로 교보문고를 방문해요.'
+        />
+        <Author
+          part='백엔드'
+          name='최영훈'
+          word='밀리 구독자면서 리디북스에서 책을 구매하고 주기적으로 교보문고를 방문해요.'
+        />
+      </Styled.AuthorWrapper>
       <Footer />
       <Styled.ScrollToTopBtn onClick={scrollTop}>위로</Styled.ScrollToTopBtn>
     </>

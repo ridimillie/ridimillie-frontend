@@ -72,9 +72,23 @@ const Styled = {
 function Book() {
   const [book, setBook] = React.useState<BookType[]>([]);
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
+  const [crawledBookInfo, setCrawledBookInfo] = React.useState({});
 
   const router = useRouter();
   const { isbn } = router.query;
+
+  const bookCrawler = async () => {
+    try {
+      const { data } = await axios.get(
+        `https://sopt27.ga/api/crawling?title=${book[0].title}&bid=${book[0].bid}`
+        // /api/crawling?title=스타트업&bid=12513614
+      );
+
+      console.log('crawler', data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   React.useEffect(() => {
     const getSearchBook = async () => {
@@ -95,6 +109,9 @@ function Book() {
 
     getSearchBook();
   }, [isbn]);
+
+  console.log('book[0]', book[0]);
+  // book[0] && bookCrawler();
 
   return (
     <div>

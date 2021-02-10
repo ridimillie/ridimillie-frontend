@@ -109,8 +109,6 @@ function Search() {
     }
   };
 
-  console.log('bookList', bookList);
-
   const deboundedAPI = React.useCallback(
     debounce(() => {
       getSearchBook();

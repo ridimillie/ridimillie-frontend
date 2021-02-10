@@ -6,10 +6,11 @@ const Styled = {
     width: 100%;
     margin: 8px 0;
     padding: 10px 16px;
-    background-color: white;
-    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
     display: flex;
     justify-content: space-between;
+    box-shadow: 2px 2px 8px rgba(146, 154, 136, 0.05);
   `,
   BoxLeft: styled.div`
     display: flex;

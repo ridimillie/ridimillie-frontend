@@ -99,6 +99,8 @@ function Search() {
         data: { data },
       } = await axios.get(`https://sopt27.ga/api?query=${inputValue.trim()}`);
 
+      console.log('data', data);
+
       setBookList(data);
       setSearchState(RESOLVED);
     } catch (error) {
@@ -106,6 +108,8 @@ function Search() {
       setSearchState(REJECTED);
     }
   };
+
+  console.log('bookList', bookList);
 
   const deboundedAPI = React.useCallback(
     debounce(() => {

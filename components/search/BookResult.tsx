@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import React from 'react';
 import { BookType } from '../../types';
+import Router from 'next/router';
 
 const Styled = {
   BookWrapper: styled.div`
@@ -22,12 +23,11 @@ const Styled = {
   Info: styled.div`
     display: flex;
     flex-direction: column;
-    padding: 8px 0 8px 16px;
+    padding: 8px 0 8px 24px;
     flex-grow: 1;
   `,
   Title: styled.div`
     margin-bottom: 8px;
-    padding-left: 8px;
     color: #ff8d78;
     font-weight: 700;
     font-size: 14px;
@@ -36,7 +36,7 @@ const Styled = {
     font-weight: 400;
     font-size: 12px;
     color: #929a88;
-    padding: 2px 8px;
+    padding: 2px 0;
     display: flex;
   `,
   DescBold: styled.div`
@@ -49,10 +49,11 @@ const Styled = {
     font-size: 12px;
     text-align: center;
     padding: 8px 0;
-    border: solid 1px;
-    border-radius: 20px;
+    border: solid 1px #000000;
+    border-radius: 4px;
     background: none;
     outline: 0;
+    z-index: 10;
   `,
   ArrowImg: styled.img<{ moreInfo: boolean }>`
     transform: rotate(${(props) => (props.moreInfo ? '0.5turn' : '0turn')});
@@ -96,8 +97,16 @@ function BookResult({ book }: Props) {
     return text;
   };
 
+  const handleClick = (isbn: string) => (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    e.stopPropagation();
+    console.log('router');
+
+    Router.push(`/book?isbn=${isbn}`);
+  };
+
   const onClickButton = () => {
     setMoreInfo(!moreInfo);
+    console.log('button');
   };
 
   return (
@@ -112,7 +121,7 @@ function BookResult({ book }: Props) {
           <Styled.Description>
             출판 &nbsp; <Styled.DescBold>{book.publisher}</Styled.DescBold>
           </Styled.Description>
-          <Styled.Empty></Styled.Empty>
+          <Styled.Empty />
           <Styled.PlatformButton onClick={onClickButton}>
             구독/구매 플랫폼 모아보기 &nbsp;
             <Styled.ArrowImg src='/assets/icons/down-arrow.svg' moreInfo={moreInfo} />

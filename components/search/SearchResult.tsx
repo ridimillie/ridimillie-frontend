@@ -1,6 +1,6 @@
 import React from 'react';
 import { BookType } from '../../types';
-import BookResult from '../book/BookResult';
+import BookResult from './BookResult';
 
 interface Props {
   bookList: BookType[];

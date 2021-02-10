@@ -41,7 +41,8 @@ const Styled = {
     border-bottom: 0.5px solid #bbc2b1;
 
     img {
-      width: 110px;
+      width: 80px;
+      object-fit: contain;
       filter: drop-shadow(4px 4px 8px rgba(146, 154, 136, 0.15));
     }
   `,
@@ -82,7 +83,7 @@ function Book() {
       try {
         const {
           data: { data },
-        } = await axios.get(`https://sopt27.ga/apis?query=${isbn}`);
+        } = await axios.get(`https://sopt27.ga/api?query=${isbn}`);
 
         setBook(data);
         setIsLoading(false);

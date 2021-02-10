@@ -34,6 +34,14 @@ const Styled = {
     /* sub / greengray3 */
     background: #bbc2b1;
     border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+
+    img {
+      width: 14px;
+    }
   `,
   AuthorWrapper: styled.div`
     display: flex;
@@ -107,7 +115,9 @@ function Home() {
         />
       </Styled.AuthorWrapper>
       <Footer />
-      <Styled.ScrollToTopBtn onClick={scrollTop}>위로</Styled.ScrollToTopBtn>
+      <Styled.ScrollToTopBtn onClick={scrollTop}>
+        <img src='/assets/images/up-text.svg' />
+      </Styled.ScrollToTopBtn>
     </>
   );
 }

@@ -10,7 +10,6 @@ const Styled = {
       flex-direction: column;
 
       align-items: center;
-      margin-bottom: 600px;
     }
   `,
   MainCopy: styled.div`
@@ -63,7 +62,7 @@ const Styled = {
     /* sub / greenblack2 */
     color: #2d3029;
     padding: 42px 0;
-    margin-bottom: 66px;
+    /* margin-bottom: 66px; */
   `,
 };
 

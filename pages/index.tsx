@@ -48,6 +48,7 @@ const Styled = {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-bottom: 70px;
   `,
 };
 
@@ -83,36 +84,12 @@ function Home() {
       <MainInput />
       <Introduction />
       <Styled.AuthorWrapper>
-        <Author
-          part='기획'
-          name='김한솔'
-          word='밀리 구독자면서 리디북스에서 책을 구매하고 주기적으로 교보문고를 방문해요.'
-        />
-        <Author
-          part='디자인'
-          name='배민주'
-          word='밀리 구독자면서 리디북스에서 책을 구매하고 주기적으로 교보문고를 방문해요.'
-        />
-        <Author
-          part='프론트엔드'
-          name='이정연'
-          word='밀리 구독자면서 리디북스에서 책을 구매하고 주기적으로 교보문고를 방문해요.'
-        />
-        <Author
-          part='프론트엔드'
-          name='유희수'
-          word='밀리 구독자면서 리디북스에서 책을 구매하고 주기적으로 교보문고를 방문해요.'
-        />
-        <Author
-          part='백엔드, 프론트엔드'
-          name='홍준엽'
-          word='밀리 구독자면서 리디북스에서 책을 구매하고 주기적으로 교보문고를 방문해요.'
-        />
-        <Author
-          part='백엔드'
-          name='최영훈'
-          word='밀리 구독자면서 리디북스에서 책을 구매하고 주기적으로 교보문고를 방문해요.'
-        />
+        <Author part='기획' name='김한솔' word='“안녕하세요”' />
+        <Author part='디자인' name='배민주' word='“안녕하세요”' />
+        <Author part='프론트엔드' name='이정연' word='“안녕하세요”' />
+        <Author part='프론트엔드' name='유희수' word='“안녕하세요”' />
+        <Author part='백엔드, 프론트엔드' name='홍준엽' word='“안녕하세요”' />
+        <Author part='백엔드' name='최영훈' word='“안녕하세요”' />
       </Styled.AuthorWrapper>
       <Footer />
       <Styled.ScrollToTopBtn onClick={scrollTop}>

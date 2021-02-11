@@ -1,7 +1,11 @@
-import '../styles/globals.css'
+import '../styles/globals.css';
+import smoothscroll from 'smoothscroll-polyfill';
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+  // kick off the polyfill!
+  smoothscroll.polyfill();
+
+  return <Component {...pageProps} />;
 }
 
-export default MyApp
+export default MyApp;

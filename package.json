@@ -16,7 +16,8 @@
     "lodash": "^4.17.20",
     "next": "^10.0.5",
     "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react-dom": "^17.0.1",
+    "smoothscroll-polyfill": "^0.4.4"
   },
   "devDependencies": {
     "@types/node": "^14.14.20",

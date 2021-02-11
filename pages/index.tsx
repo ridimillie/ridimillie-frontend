@@ -6,6 +6,7 @@ import MainInput from '../components/home/MainInput';
 import Introduction from '../components/home/Introduction';
 import Footer from '../components/home/Footer';
 import Author from '../components/home/Authors';
+import { DownCircleOutlined } from '@ant-design/icons';
 
 const Styled = {
   Header: styled.div`
@@ -45,6 +46,14 @@ const Styled = {
       background-color: #fff;
     }
   `,
+  ScrollDownBtnWrapper: styled.div`
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    position: absolute;
+    bottom: 0px;
+    padding: 20px;
+  `,
   ScrollToTopBtn: styled.div`
     position: fixed;
     bottom: 32px;
@@ -72,6 +81,35 @@ const Styled = {
   `,
 };
 
+function useWindowSize() {
+  const isClient = typeof window === 'object';
+
+  function getSize() {
+    return {
+      width: isClient ? window.innerWidth : undefined,
+      height: isClient ? window.innerHeight : undefined,
+    };
+  }
+
+  const [windowSize, setWindowSize] = React.useState(getSize);
+
+  React.useEffect(() => {
+    if (!isClient) {
+      // return false;
+      return;
+    }
+
+    function handleResize() {
+      setWindowSize(getSize());
+    }
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  return windowSize;
+}
+
 function Home() {
   // const [showScroll, setShowScroll] = React.useState(false);
 
@@ -91,6 +129,13 @@ function Home() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const size = useWindowSize();
+  console.log('size', size);
+
+  const scrollDown = () => {
+    window.scrollTo({ top: size.height, behavior: 'smooth' });
+  };
+
   return (
     <>
       <Head>
@@ -103,6 +148,17 @@ function Home() {
         </Styled.Header>
         <Main />
         <MainInput />
+        <Styled.ScrollDownBtnWrapper>
+          <DownCircleOutlined
+            onClick={scrollDown}
+            style={{
+              fontSize: '36px',
+              color: '#fff',
+              opacity: 0.8,
+              display: 'flex',
+            }}
+          />
+        </Styled.ScrollDownBtnWrapper>
       </Styled.MainWrapper>
       <Introduction />
       <Styled.AuthorWrapper>

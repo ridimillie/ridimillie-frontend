@@ -3,6 +3,8 @@ import styled from '@emotion/styled';
 
 const Styled = {
   MainWrapper: styled.main`
+    position: relative;
+
     @media (max-width: 768px) {
       margin-top: 44px;
       padding: 36px 0 60px 32px;

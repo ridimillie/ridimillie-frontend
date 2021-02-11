@@ -25,6 +25,26 @@ const Styled = {
       height: 20px;
     }
   `,
+  MainWrapper: styled.div`
+    height: calc(100vh - 44px);
+    position: relative;
+
+    &::before {
+      content: '';
+      background-image: url('/assets/images/home-background.gif');
+      background-size: cover;
+      /* background-repeat: no-repeat; */
+      /* background-position: center; */
+      opacity: 0.6;
+
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      right: 0px;
+      bottom: 0px;
+      background-color: #fff;
+    }
+  `,
   ScrollToTopBtn: styled.div`
     position: fixed;
     bottom: 32px;
@@ -80,8 +100,10 @@ function Home() {
       <Styled.Header>
         <Styled.Logo src='/assets/images/logo.svg' />
       </Styled.Header>
-      <Main />
-      <MainInput />
+      <Styled.MainWrapper>
+        <Main />
+        <MainInput />
+      </Styled.MainWrapper>
       <Introduction />
       <Styled.AuthorWrapper>
         <Author part='기획' name='김한솔' word='“안녕하세요”' />

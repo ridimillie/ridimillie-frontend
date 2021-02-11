@@ -8,7 +8,6 @@ const Styled = {
       padding: 86px 16px;
       display: flex;
       flex-direction: column;
-
       align-items: center;
     }
   `,
@@ -78,9 +77,9 @@ function Introduction() {
         <Styled.Service imgName='ridi-select' />
         <Styled.Service style={{ right: '6px' }} imgName='millie' />
         <Styled.Service style={{ right: '12px' }} imgName='yes24' />
-        <Styled.Service style={{ right: '18px' }} />
-        <Styled.Service style={{ right: '24px' }} />
-        <Styled.Service style={{ right: '30px' }} />
+        <Styled.Service style={{ right: '18px' }} imgName='kyobo' />
+        <Styled.Service style={{ right: '24px' }} imgName='naver' />
+        <Styled.Service style={{ right: '30px' }} imgName='sam' />
       </Styled.EBookServices>
       <Styled.SubCopy>
         e-book 구독 및 구매 서비스 6곳의 실시간 검색 결과를 제공합니다.

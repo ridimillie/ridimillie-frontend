@@ -16,7 +16,7 @@ const Styled = {
       width: 100%;
       display: flex;
       justify-content: center;
-      background: #f7f2e4;
+      /* background: #f7f2e4; */
       z-index: 999;
     }
   `,
@@ -26,8 +26,9 @@ const Styled = {
     }
   `,
   MainWrapper: styled.div`
-    height: calc(100vh - 44px);
-    position: relative;
+    /* height: calc(100vh - 44px); */
+    height: 100vh;
+    /* position: relative; */
 
     &::before {
       content: '';
@@ -36,7 +37,6 @@ const Styled = {
       /* background-repeat: no-repeat; */
       /* background-position: center; */
       opacity: 0.6;
-
       position: absolute;
       top: 0px;
       left: 0px;
@@ -73,19 +73,19 @@ const Styled = {
 };
 
 function Home() {
-  const [showScroll, setShowScroll] = React.useState(false);
+  // const [showScroll, setShowScroll] = React.useState(false);
 
-  React.useEffect(() => {
-    const checkScrollTop = () => {
-      if (!showScroll && window.pageYOffset > 400) {
-        setShowScroll(true);
-      } else if (showScroll && window.pageYOffset <= 400) {
-        setShowScroll(false);
-      }
-    };
+  // React.useEffect(() => {
+  //   const checkScrollTop = () => {
+  //     if (!showScroll && window.pageYOffset > 400) {
+  //       setShowScroll(true);
+  //     } else if (showScroll && window.pageYOffset <= 400) {
+  //       setShowScroll(false);
+  //     }
+  //   };
 
-    window.addEventListener('scroll', checkScrollTop);
-  }, []);
+  //   window.addEventListener('scroll', checkScrollTop);
+  // }, []);
 
   const scrollTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -97,10 +97,10 @@ function Home() {
         <title>이책저책 - e-book 찾을땐</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <Styled.Header>
-        <Styled.Logo src='/assets/images/logo.svg' />
-      </Styled.Header>
       <Styled.MainWrapper>
+        <Styled.Header>
+          <Styled.Logo src='/assets/images/logo.svg' />
+        </Styled.Header>
         <Main />
         <MainInput />
       </Styled.MainWrapper>

@@ -7,6 +7,7 @@ import Introduction from '../components/home/Introduction';
 import Footer from '../components/home/Footer';
 import Author from '../components/home/Authors';
 import { DownCircleOutlined } from '@ant-design/icons';
+import smoothscroll from 'smoothscroll-polyfill';
 
 const Styled = {
   Header: styled.div`
@@ -135,6 +136,11 @@ function Home() {
   const scrollDown = () => {
     window.scrollTo({ top: size.height, behavior: 'smooth' });
   };
+
+  React.useEffect(() => {
+    // kick off the polyfill!
+    smoothscroll?.polyfill();
+  }, []);
 
   return (
     <>

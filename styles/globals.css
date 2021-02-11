@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Sans+KR:wght@400;700&display=swap');
 
+* {
+  -webkit-overflow-scrolling: touch;
+}
+
 html,
 body {
   padding: 0;

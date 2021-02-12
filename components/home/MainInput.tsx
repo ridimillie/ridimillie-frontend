@@ -13,10 +13,10 @@ const Styled = {
     }
   `,
   Input: styled.input`
-    background: rgba(255, 255, 255, 0.6);
-    border: 3px solid rgba(255, 255, 255, 0.8);
+    border: 1px solid #fff;
+    background-color: #fff;
     box-sizing: border-box;
-    border-radius: 100px;
+    border-radius: 8px;
 
     font-size: 14px;
     line-height: 21px;

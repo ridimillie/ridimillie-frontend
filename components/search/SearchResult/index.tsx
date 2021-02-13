@@ -1,5 +1,5 @@
 import React from 'react';
-import { BookType } from '../../types';
+import { BookType } from '../../../types';
 import BookResult from './BookResult';
 
 interface Props {
@@ -7,7 +7,6 @@ interface Props {
 }
 
 function SearchResult({ bookList }: Props) {
-  const [showPlatform, setShowPlatform] = React.useState<boolean>(false);
   const removeHTML = (text: string) => {
     text = text.replace(/<(\/)?([a-zA-Z]*)(\s[a-zA-Z]*=[^>]*)?(\s)*(\/)?>/gi, '');
     return text;
@@ -22,15 +21,11 @@ function SearchResult({ bookList }: Props) {
     };
   });
 
-  const onClickButton = () => {
-    setShowPlatform(!showPlatform);
-  };
-
   return (
     <>
-      {refinedBookList
-        ? refinedBookList.map((book: BookType) => <BookResult key={book.bid} book={book} />)
-        : null}
+      {refinedBookList.map((book: BookType) => (
+        <BookResult key={book.bid} book={book} />
+      ))}
     </>
   );
 }

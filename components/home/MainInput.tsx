@@ -23,6 +23,8 @@ const Styled = {
     text-align: center;
     /* sub / greengray2 */
     color: #929a88;
+    -webkit-appearance: none;
+    -webkit-border-radius: 8px;
 
     &:focus {
       outline: none;

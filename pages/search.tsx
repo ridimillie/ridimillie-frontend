@@ -46,15 +46,15 @@ const Styled = {
     height: 100%;
     background-color: rgba(255, 255, 255, 0);
     border: none;
-    border-bottom: 2px solid #000000;
+    border-bottom: 1.5px solid #000000;
     padding-left: 34px;
     font-size: 16px;
     line-height: 100%;
     letter-spacing: -0.04em;
     caret-color: #ff8d78;
     -webkit-appearance: none;
-    border-radius: 0;
     -webkit-border-radius: 0;
+    border-radius: 0;
 
     background-image: url('/assets/icons/search.svg');
     background-position: 0px 6px;

@@ -55,7 +55,14 @@ const Styled = {
     bottom: 0px;
     padding: 20px;
   `,
-  ScrollToTopBtn: styled.div`
+  ScrollDownBtn: styled(DownCircleOutlined)`
+    font-size: 36px;
+    color: #fff;
+    opacity: 0.8;
+    display: flex;
+    outline: none;
+  `,
+  ScrollTopBtn: styled.div`
     position: fixed;
     bottom: 32px;
     right: 16px;
@@ -155,15 +162,7 @@ function Home() {
         <Main />
         <MainInput />
         <Styled.ScrollDownBtnWrapper>
-          <DownCircleOutlined
-            onClick={scrollDown}
-            style={{
-              fontSize: '36px',
-              color: '#fff',
-              opacity: 0.8,
-              display: 'flex',
-            }}
-          />
+          <Styled.ScrollDownBtn onClick={scrollDown} />
         </Styled.ScrollDownBtnWrapper>
       </Styled.MainWrapper>
       <Introduction />
@@ -176,9 +175,9 @@ function Home() {
         <Author part='백엔드' name='최영훈' word='“안녕하세요”' />
       </Styled.AuthorWrapper>
       <Footer />
-      <Styled.ScrollToTopBtn onClick={scrollTop}>
+      <Styled.ScrollTopBtn onClick={scrollTop}>
         <img src='/assets/images/up-text.svg' />
-      </Styled.ScrollToTopBtn>
+      </Styled.ScrollTopBtn>
     </>
   );
 }

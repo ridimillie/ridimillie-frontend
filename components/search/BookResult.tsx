@@ -19,11 +19,12 @@ const Styled = {
     width: 85px;
     height: 127px;
     box-shadow: 1px 2px 4px #ddd;
+    border-radius: 4px;
   `,
   Info: styled.div`
     display: flex;
     flex-direction: column;
-    padding: 8px 0 8px 24px;
+    padding-left: 24px;
     flex-grow: 1;
   `,
   Title: styled.div`
@@ -61,8 +62,8 @@ const Styled = {
   MoreInfoWrapper: styled.div<{ show: boolean }>`
     display: ${(props) => (props.show ? 'block' : 'none')};
     width: 100%;
-    margin: 16px 0;
-    padding: 0 12px;
+    margin-top: 20px;
+    /* padding: 0 12px; */
   `,
   PlatformWrapper: styled.div`
     display: flex;
@@ -78,7 +79,7 @@ const Styled = {
   PlatformInfo: styled.div`
     display: flex;
     align-items: center;
-    margin-bottom: 8px;
+    margin: 8px 0px;
   `,
   PlatformLogo: styled.img`
     width: 40px;
@@ -106,7 +107,6 @@ function BookResult({ book }: Props) {
 
   const onClickButton = () => {
     setMoreInfo(!moreInfo);
-    console.log('button');
   };
 
   return (
@@ -130,7 +130,10 @@ function BookResult({ book }: Props) {
       </Styled.InfoWrapper>
       <Styled.MoreInfoWrapper show={moreInfo}>
         <Styled.PlatformWrapper>
-          <img style={{ width: '32px', height: '26px' }} src='/assets/images/purchase.svg' />
+          <img
+            style={{ width: '32px', height: '26px', margin: '8px 0' }}
+            src='/assets/images/subscribe.svg'
+          />
           <Styled.PlatformList>
             <Styled.PlatformInfo>
               <Styled.PlatformLogo
@@ -143,7 +146,9 @@ function BookResult({ book }: Props) {
         </Styled.PlatformWrapper>
         <hr style={{ margin: 0 }} />
         <Styled.PlatformWrapper>
-          <img style={{ width: '32px', height: '26px' }} src='/assets/images/subscribe.svg'></img>
+          <img
+            style={{ width: '32px', height: '26px', margin: '8px 0' }}
+            src='/assets/images/purchase.svg'></img>
           <Styled.PlatformList>
             <Styled.PlatformInfo>
               <Styled.PlatformLogo

@@ -112,7 +112,7 @@ function Search() {
   const deboundedAPI = React.useCallback(
     debounce(() => {
       getSearchBook();
-    }, 1000),
+    }, 800),
     [inputValue]
   );
 

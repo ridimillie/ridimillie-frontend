@@ -6,25 +6,22 @@ import { BookType } from '../../types';
 const Styled = {
   bookWrapper: styled.div`
     width: 100%;
-    border-bottom: 1px solid #bbc2b1;
+    border-bottom: 1px solid #d0d4ca;
     display: flex;
-    padding: 12px 16px;
-
+    padding: 8px 12px;
     img {
       width: 30px;
-      /* object-fit: contain; */
       height: 45px;
     }
   `,
   Info: styled.div`
-    justify-content: center;
     padding-left: 16px;
+    padding-top: 4px;
     overflow: hidden;
     width: calc(100% - 30px);
   `,
-
   Title: styled.div`
-    margin-bottom: 4px;
+    margin-bottom: 2px;
     color: #ff8d78;
     font-weight: 700;
     font-size: 12px;

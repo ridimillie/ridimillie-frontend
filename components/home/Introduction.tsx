@@ -37,7 +37,7 @@ const Styled = {
       background-position: center;
       background-repeat: no-repeat;
       /* background-image: url('/assets/images/ebook-millie.svg'); */
-      background-image: ${(props) => `url('/assets/images/ebook-${props.imgName}.svg')`};
+      background-image: ${(props) => `url('/assets/images/ebook-${props.imgName}.png')`};
       background-size: cover;
     }
   `,

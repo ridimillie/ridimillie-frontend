@@ -5,7 +5,7 @@ import { url } from 'inspector';
 const Styled = {
   IntroductionWrapper: styled.section`
     @media (max-width: 768px) {
-      padding: 48px 16px;
+      padding: 0 16px 48px 16px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -13,11 +13,12 @@ const Styled = {
   `,
   MainCopy: styled.div`
     @media (max-width: 768px) {
-      font-size: 14px;
+      font-size: 16px;
       //* sub / greengray1 */
       color: #5a5f54;
-      line-height: 25px;
+      line-height: 20px;
       text-align: center;
+      letter-spacing: -0.04em;
     }
   `,
   EBookServices: styled.div`
@@ -49,17 +50,18 @@ const Styled = {
       /* sub / greengray2 */
       color: #929a88;
       margin-bottom: 98px;
+      letter-spacing: -0.04em;
     }
   `,
   Description: styled.div`
-    font-weight: bold;
-    font-size: 14px;
-    line-height: 20px;
+    /* font-weight: bold; */
+    font-size: 18px;
     /* or 14px */
     text-align: center;
     /* sub / greenblack2 */
     color: #2d3029;
     padding: 42px 0;
+    letter-spacing: -0.04em;
     /* margin-bottom: 66px; */
   `,
 };
@@ -86,7 +88,7 @@ function Introduction() {
       <Styled.Description>
         읽고 싶은 책이 생기면
         <br />
-        '이책 저책'에서 가장 먼저 찾아보세요.
+        <b>'이책 저책'</b>에서 가장 먼저 찾아보세요.
       </Styled.Description>
     </Styled.IntroductionWrapper>
   );

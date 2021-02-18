@@ -5,7 +5,7 @@ import { url } from 'inspector';
 const Styled = {
   IntroductionWrapper: styled.section`
     @media (max-width: 768px) {
-      padding: 86px 16px;
+      padding: 48px 16px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -14,11 +14,10 @@ const Styled = {
   MainCopy: styled.div`
     @media (max-width: 768px) {
       font-size: 14px;
-      /* sub / greenblack2 */
+      //* sub / greengray1 */
+      color: #5a5f54;
       line-height: 25px;
-      color: #2d3029;
       text-align: center;
-      margin-bottom: 12px;
     }
   `,
   EBookServices: styled.div`

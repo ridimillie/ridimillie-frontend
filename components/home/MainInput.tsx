@@ -5,6 +5,8 @@ import styled from '@emotion/styled';
 const Styled = {
   InputWrapper: styled.div`
     position: relative;
+    /* position: sticky;
+    top: 44px; */
 
     @media (max-width: 768px) {
       height: 70px;

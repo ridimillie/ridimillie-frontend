@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import axios from 'axios';
 import styled from '@emotion/styled';
 import Link from 'next/link';
-import Loading from '../components/common/Loading';
+import { LoadingOutlined } from '@ant-design/icons';
 import EbookLinkButton from '../components/book/EbookLinkButton';
 
 const Styled = {
@@ -111,7 +111,7 @@ function Book() {
   }, [isbn]);
 
   console.log('book[0]', book[0]);
-  // book[0] && bookCrawler();
+  book[0] && bookCrawler();
 
   return (
     <div>
@@ -128,7 +128,7 @@ function Book() {
         </Link>
       </Styled.Header>
       {isLoading ? (
-        <Loading />
+        <LoadingOutlined />
       ) : (
         book[0] && (
           <Styled.BookContainer>

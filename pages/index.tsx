@@ -11,16 +11,16 @@ import smoothscroll from 'smoothscroll-polyfill';
 
 const Styled = {
   Header: styled.div`
-    @media (max-width: 768px) {
-      position: fixed;
-      top: 0;
-      padding: 12px 0;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      /* background: #f7f2e4; */
-      z-index: 999;
-    }
+    /* @media (max-width: 768px) { */
+    position: fixed;
+    top: 0;
+    padding: 12px 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    /* background: #f7f2e4; */
+    z-index: 999;
+    /* } */
   `,
   Logo: styled.img`
     @media (max-width: 768px) {
@@ -138,7 +138,6 @@ function Home() {
   };
 
   const size = useWindowSize();
-  console.log('size', size);
 
   const scrollDown = () => {
     window.scrollTo({ top: size.height, behavior: 'smooth' });

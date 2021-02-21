@@ -34,7 +34,13 @@ const Styled = {
   `,
 };
 
-function EbookLinkButton() {
+type Props = {
+  platform: string;
+  price: number;
+  url: string;
+};
+
+function PlatformButton({ platform, price, url }: Props) {
   const handleClick = () => {
     alert('아직이다...');
   };
@@ -43,14 +49,14 @@ function EbookLinkButton() {
     <Styled.Box onClick={handleClick}>
       <Styled.BoxLeft>
         <img src='/assets/images/millie-logo.png' />
-        <div>밀리의 서재</div>
+        <div>{platform}</div>
       </Styled.BoxLeft>
       <Styled.BoxRight>
-        <div>9,990원</div>
+        <div>{price}</div>
         <img src='/assets/icons/right-arrow.svg' />
       </Styled.BoxRight>
     </Styled.Box>
   );
 }
 
-export default EbookLinkButton;
+export default PlatformButton;

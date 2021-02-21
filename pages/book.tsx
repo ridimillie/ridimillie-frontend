@@ -5,12 +5,11 @@ import axios from 'axios';
 import styled from '@emotion/styled';
 import Link from 'next/link';
 import { LoadingOutlined } from '@ant-design/icons';
-import EbookLinkButton from '../components/book/EbookLinkButton';
+import PlatformButton from '../components/book/PlatformButton';
 
 const Styled = {
   Header: styled.div`
     background-color: #f7f2e4;
-
     @media (max-width: 768px) {
       position: fixed;
       top: 0;
@@ -19,99 +18,136 @@ const Styled = {
       display: flex;
       justify-content: space-between;
     }
-
     a {
       display: flex;
       align-items: center;
     }
   `,
+
   Logo: styled.img`
     @media (max-width: 768px) {
       width: 66px;
     }
   `,
+
   SearchIcon: styled.img`
     width: 24px;
     height: 24px;
   `,
+
   BookContainer: styled.div`
     margin: 48px 32px 0;
     padding: 24px 0;
     display: flex;
     border-bottom: 0.5px solid #bbc2b1;
-
     img {
       width: 80px;
       object-fit: contain;
       filter: drop-shadow(4px 4px 8px rgba(146, 154, 136, 0.15));
     }
   `,
+
   BookInfo: styled.div`
     display: flex;
     flex-direction: column;
     padding-left: 24px;
   `,
+
   BookTitle: styled.div`
     font-size: 16px;
     font-weight: bold;
     padding-bottom: 16px;
   `,
+
   BookDescription: styled.div`
     font-size: 14px;
     padding-bottom: 4px;
     color: #929a88;
   `,
+
   Contents: styled.div`
     margin: 24px 32px;
   `,
-  Ebooks: styled.div`
+
+  PlatformContainer: styled.div`
     margin-top: 24px;
   `,
 };
 
+type ServiceType = {
+  platform: string;
+  price: number;
+  redirectURL: string;
+};
+
 function Book() {
-  const [book, setBook] = React.useState<BookType[]>([]);
-  const [isLoading, setIsLoading] = React.useState<boolean>(false);
-  const [crawledBookInfo, setCrawledBookInfo] = React.useState({});
+  const [book, setBook] = React.useState<{ data: BookType | null; isLoading: boolean }>({
+    data: null,
+    isLoading: false,
+  });
+  const [bookPlatform, setBookPlatform] = React.useState({
+    purchaseBooks: [],
+    subscribedBooks: [],
+    isLoading: false,
+  });
 
   const router = useRouter();
   const { isbn } = router.query;
 
-  const bookCrawler = async () => {
-    try {
-      const { data } = await axios.get(
-        `https://sopt27.ga/api/crawling?title=${book[0].title}&bid=${book[0].bid}`
-        // /api/crawling?title=스타트업&bid=12513614
-      );
-
-      console.log('crawler', data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
   React.useEffect(() => {
-    const getSearchBook = async () => {
-      setIsLoading(true);
+    const getBookInfo = async () => {
+      setBook({ ...book, isLoading: true });
 
       try {
         const {
           data: { data },
-        } = await axios.get(`https://sopt27.ga/api?query=${isbn}`);
+        } = await axios.get(`http://15.164.84.113:3000/api?query=${isbn}`);
 
-        setBook(data);
-        setIsLoading(false);
+        setBook({ data: data[0], isLoading: false });
       } catch (error) {
+        setBook({ data: null, isLoading: false });
+
         console.error(error);
-        setIsLoading(false);
       }
     };
 
-    getSearchBook();
+    getBookInfo();
   }, [isbn]);
 
-  console.log('book[0]', book[0]);
-  book[0] && bookCrawler();
+  React.useEffect(() => {
+    const bookPlatformCrawler = async () => {
+      setBookPlatform({
+        ...bookPlatform,
+        isLoading: true,
+      });
+
+      try {
+        const {
+          data: { data },
+        } = await axios.get(
+          `http://15.164.84.113:3000/api/crawling?title=${book.data?.title}&bid=${book.data?.bid}`
+        );
+
+        console.log('book.data :>> ', book.data);
+        console.log('crawler', data);
+
+        setBookPlatform({
+          purchaseBooks: data.purchaseBooks,
+          subscribedBooks: data.subscribedBooks,
+          isLoading: false,
+        });
+      } catch (error) {
+        setBookPlatform({
+          purchaseBooks: [],
+          subscribedBooks: [],
+          isLoading: false,
+        });
+
+        console.error(error);
+      }
+    };
+    book.data && bookPlatformCrawler();
+  }, [book.data]);
 
   return (
     <div>
@@ -127,21 +163,21 @@ function Book() {
           </a>
         </Link>
       </Styled.Header>
-      {isLoading ? (
+      {book.isLoading ? (
         <LoadingOutlined />
       ) : (
-        book[0] && (
+        book.data && (
           <Styled.BookContainer>
-            <img src={book[0]?.image} alt={book[0].title} />
+            <img src={book.data.image} alt={book.data.title} />
             <Styled.BookInfo>
-              <Styled.BookTitle>{book[0].title}</Styled.BookTitle>
+              <Styled.BookTitle>{book.data.title}</Styled.BookTitle>
               <Styled.BookDescription>
-                저자 <strong>{book[0].author}</strong>
+                저자 <strong>{book.data.author}</strong>
               </Styled.BookDescription>
               <Styled.BookDescription>
                 출판{' '}
                 <strong>
-                  {book[0].publisher}, {book[0].pubdate.slice(0, 4)}
+                  {book.data.publisher}, {book.data.pubdate.slice(0, 4)}
                 </strong>
               </Styled.BookDescription>
             </Styled.BookInfo>
@@ -149,18 +185,26 @@ function Book() {
         )
       )}
       <Styled.Contents>
-        <Styled.Ebooks>
+        <Styled.PlatformContainer>
           <div style={{ marginBottom: '8px' }}>구독</div>
-          <EbookLinkButton />
-          <EbookLinkButton />
-          <EbookLinkButton />
-        </Styled.Ebooks>
-        <Styled.Ebooks>
+          {bookPlatform.subscribedBooks.map((service: ServiceType) => (
+            <PlatformButton
+              platform={service.platform}
+              price={service.price}
+              url={service.redirectURL}
+            />
+          ))}
+        </Styled.PlatformContainer>
+        <Styled.PlatformContainer>
           <div style={{ marginBottom: '8px' }}>구매</div>
-          <EbookLinkButton />
-          <EbookLinkButton />
-          <EbookLinkButton />
-        </Styled.Ebooks>
+          {bookPlatform.purchaseBooks.map((service: ServiceType) => (
+            <PlatformButton
+              platform={service.platform}
+              price={service.price}
+              url={service.redirectURL}
+            />
+          ))}
+        </Styled.PlatformContainer>
       </Styled.Contents>
     </div>
   );

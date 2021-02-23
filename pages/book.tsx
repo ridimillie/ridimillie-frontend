@@ -6,6 +6,7 @@ import styled from '@emotion/styled';
 import Link from 'next/link';
 import { LoadingOutlined } from '@ant-design/icons';
 import PlatformButton from '../components/book/PlatformButton';
+import Head from 'next/head';
 
 const Styled = {
   Header: styled.div`
@@ -159,6 +160,9 @@ function Book() {
 
   return (
     <div>
+      <Head>
+        <title>{book.data?.title} :: 이책저책</title>
+      </Head>
       <Styled.Header>
         <Link href='/'>
           <a>

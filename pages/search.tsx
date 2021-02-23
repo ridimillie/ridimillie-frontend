@@ -148,12 +148,7 @@ function Search() {
   return (
     <div>
       <Head>
-        <title>검색 | 이책저책 </title>
-        <link rel='icon' href='/favicon.ico' />
-        <meta
-          name='viewport'
-          content='initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width'
-        />
+        <title>검색 :: 이책저책</title>
       </Head>
       <Styled.Header>
         <Link href='/'>

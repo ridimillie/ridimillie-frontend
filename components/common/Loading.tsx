@@ -22,9 +22,19 @@ const Styled = {
       }
     }
   `,
+
+  LoadingBook: styled.img`
+    width: 120px;
+    height: 120px;
+    margin-top: 80px;
+  `,
 };
 
-function Loading() {
+type LoadingType = {
+  type?: string;
+};
+
+function Loading({ type = 'book' }: LoadingType) {
   const max: number = 7;
   const min: number = 1;
 
@@ -32,8 +42,9 @@ function Loading() {
 
   return (
     <Styled.LoadingWrapper>
-      {/* <LoadingImage src={`/assets/images/loading-image-${randomNumber}.jpg`} /> */}
-      <Styled.LoadingImage src={`/assets/images/loading-image-3.jpg`} />
+      {type === 'book' && <Styled.LoadingBook src='/assets/icons/loading-book.gif' alt='Loading...' />}
+      {type === 'random-image' && <Styled.LoadingImage src={`/assets/images/loading-image-${randomNumber}.jpg`} />}
+      {type === 'image' && <Styled.LoadingImage src={`/assets/images/loading-image-7.jpg`} />}
     </Styled.LoadingWrapper>
   );
 }

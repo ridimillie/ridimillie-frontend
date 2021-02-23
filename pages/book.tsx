@@ -117,7 +117,7 @@ function Book() {
     };
 
     getBookInfo();
-  }, [isbn]);
+  }, []);
 
   React.useEffect(() => {
     const bookPlatformCrawler = async () => {
@@ -137,9 +137,6 @@ function Book() {
         /** Json Server */
         const { data } = await axios.get('http://localhost:3005/crawler');
 
-        console.log('book.data :>> ', book.data);
-        console.log('crawler', data);
-
         setBookPlatform({
           purchaseBooks: data.purchaseBooks,
           subscribedBooks: data.subscribedBooks,
@@ -156,7 +153,7 @@ function Book() {
       }
     };
     book.data && bookPlatformCrawler();
-  }, [book.data]);
+  }, []);
 
   return (
     <div>

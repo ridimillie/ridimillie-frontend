@@ -103,8 +103,6 @@ function Search() {
       /** Json Server */
       const { data } = await axios.get('http://localhost:3005/search');
 
-      console.log('data', data);
-
       setBookList(data);
       setSearchState(RESOLVED);
     } catch (error) {

@@ -5,4 +5,4 @@ singleQuote: true
 bracketSpacing: true
 jsxBracketSameLine: true
 jsxSingleQuote: true
-printWidth: 120
+printWidth: 140

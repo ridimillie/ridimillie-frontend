@@ -74,6 +74,9 @@ const Styled = {
 
   PlatformContainer: styled.div`
     margin-top: 24px;
+    & > img {
+      width: 35px;
+    }
   `,
 };
 
@@ -165,8 +168,6 @@ function Book() {
     book.data && bookPlatformCrawler();
   }, [book.data]);
 
-  console.log('bookPlatform :>> ', bookPlatform);
-
   return (
     <div>
       <Head>
@@ -207,13 +208,13 @@ function Book() {
       )}
       <Styled.Contents>
         <Styled.PlatformContainer>
-          <div style={{ marginBottom: '8px' }}>구독</div>
+          <img src='/assets/images/subscribe.svg' alt='구독' />
           {bookPlatform.subscribedBooks.map((service: ServiceType, index) => (
             <PlatformButton key={index} platform={service.platform} price={service.price} url={service.redirectURL} />
           ))}
         </Styled.PlatformContainer>
         <Styled.PlatformContainer>
-          <div style={{ marginBottom: '8px' }}>구매</div>
+          <img src='/assets/images/purchase.svg' alt='구매' />
           {bookPlatform.purchaseBooks.map((service: ServiceType, index) => (
             <PlatformButton key={index} platform={service.platform} price={service.price} url={service.redirectURL} />
           ))}

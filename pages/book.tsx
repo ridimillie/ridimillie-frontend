@@ -99,9 +99,13 @@ function Book() {
       setBook({ ...book, isLoading: true });
 
       try {
-        const {
-          data: { data },
-        } = await axios.get(`http://15.164.84.113:3000/api?query=${isbn}`);
+        /** Real Server */
+        // const {
+        //   data: { data },
+        // } = await axios.get(`http://15.164.84.113:3000/api?query=${isbn}`);
+
+        /** Json Server */
+        const { data } = await axios.get('http://localhost:3005/book');
 
         setBook({ data: data[0], isLoading: false });
       } catch (error) {
@@ -122,11 +126,15 @@ function Book() {
       });
 
       try {
-        const {
-          data: { data },
-        } = await axios.get(
-          `http://15.164.84.113:3000/api/crawling?title=${book.data?.title}&bid=${book.data?.bid}`
-        );
+        /** Real Server */
+        // const {
+        //   data: { data },
+        // } = await axios.get(
+        //   `http://15.164.84.113:3000/api/crawling?title=${book.data?.title}&bid=${book.data?.bid}`
+        // );
+
+        /** Json Server */
+        const { data } = await axios.get('http://localhost:3005/crawler');
 
         console.log('book.data :>> ', book.data);
         console.log('crawler', data);

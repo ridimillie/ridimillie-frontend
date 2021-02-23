@@ -8,6 +8,7 @@ import Footer from '../components/home/Footer';
 import Author from '../components/home/Authors';
 import { DownCircleOutlined } from '@ant-design/icons';
 import smoothscroll from 'smoothscroll-polyfill';
+import axios from 'axios';
 
 const Styled = {
   Header: styled.div`
@@ -151,7 +152,7 @@ function Home() {
   return (
     <>
       <Head>
-        <title>이책저책 - e-book 찾을땐</title>
+        <title>이책저책 :: 당신이 찾는 모든 e-book</title>
         <link rel='icon' href='/favicon.ico' />
         <meta property='og:url' content='https://ebookzbook.vercel.app/' />
         <meta property='og:type' content='website' />

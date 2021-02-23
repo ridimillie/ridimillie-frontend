@@ -95,12 +95,13 @@ function Search() {
     setSearchState(LOADING);
 
     try {
+      /** Real Server */
       // const {
       //   data: { data },
-      // } = await axios.get(`https://sopt27.ga/api?query=${inputValue.trim()}`);
-      const {
-        data: { data },
-      } = await axios.get(`http://15.164.84.113:3000/api?query=${inputValue.trim()}`);
+      // } = await axios.get(`http://15.164.84.113:3000/api?query=${inputValue.trim()}`);
+
+      /** Json Server */
+      const { data } = await axios.get('http://localhost:3005/search');
 
       console.log('data', data);
 

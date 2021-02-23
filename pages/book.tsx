@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { LoadingOutlined } from '@ant-design/icons';
 import PlatformButton from '../components/book/PlatformButton';
 import Head from 'next/head';
+import Loading from '../components/common/Loading';
 
 const Styled = {
   Header: styled.div`
@@ -117,7 +118,7 @@ function Book() {
     };
 
     getBookInfo();
-  }, []);
+  }, [isbn]);
 
   React.useEffect(() => {
     const bookPlatformCrawler = async () => {
@@ -136,6 +137,7 @@ function Book() {
 
         /** Json Server */
         const { data } = await axios.get('http://localhost:3005/crawler');
+        console.log('data :>> ', data);
 
         setBookPlatform({
           purchaseBooks: data.purchaseBooks,
@@ -143,6 +145,7 @@ function Book() {
           isLoading: false,
         });
       } catch (error) {
+        console.log('data :>> dda');
         setBookPlatform({
           purchaseBooks: [],
           subscribedBooks: [],
@@ -153,7 +156,9 @@ function Book() {
       }
     };
     book.data && bookPlatformCrawler();
-  }, []);
+  }, [book.data]);
+
+  console.log('bookPlatform :>> ', bookPlatform);
 
   return (
     <div>
@@ -173,7 +178,7 @@ function Book() {
         </Link>
       </Styled.Header>
       {book.isLoading ? (
-        <LoadingOutlined />
+        <Loading />
       ) : (
         book.data && (
           <Styled.BookContainer>
@@ -196,22 +201,14 @@ function Book() {
       <Styled.Contents>
         <Styled.PlatformContainer>
           <div style={{ marginBottom: '8px' }}>구독</div>
-          {bookPlatform.subscribedBooks.map((service: ServiceType) => (
-            <PlatformButton
-              platform={service.platform}
-              price={service.price}
-              url={service.redirectURL}
-            />
+          {bookPlatform.subscribedBooks.map((service: ServiceType, index) => (
+            <PlatformButton key={index} platform={service.platform} price={service.price} url={service.redirectURL} />
           ))}
         </Styled.PlatformContainer>
         <Styled.PlatformContainer>
           <div style={{ marginBottom: '8px' }}>구매</div>
-          {bookPlatform.purchaseBooks.map((service: ServiceType) => (
-            <PlatformButton
-              platform={service.platform}
-              price={service.price}
-              url={service.redirectURL}
-            />
+          {bookPlatform.purchaseBooks.map((service: ServiceType, index) => (
+            <PlatformButton key={index} platform={service.platform} price={service.price} url={service.redirectURL} />
           ))}
         </Styled.PlatformContainer>
       </Styled.Contents>

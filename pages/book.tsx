@@ -12,6 +12,7 @@ import Loading from '../components/common/Loading';
 const Styled = {
   Header: styled.div`
     background-color: #f7f2e4;
+    z-index: 999;
     @media (max-width: 768px) {
       position: fixed;
       top: 0;
@@ -109,7 +110,15 @@ function Book() {
         /** Json Server */
         const { data } = await axios.get('http://localhost:3005/book');
 
-        setBook({ data: data[0], isLoading: false });
+        const bookList = data.map((book: BookType) => {
+          const authorList: string[] = book.author.split('|');
+          return {
+            ...book,
+            author: authorList.join(', '),
+          };
+        });
+
+        setBook({ data: bookList[0], isLoading: false });
       } catch (error) {
         setBook({ data: null, isLoading: false });
 
@@ -137,7 +146,6 @@ function Book() {
 
         /** Json Server */
         const { data } = await axios.get('http://localhost:3005/crawler');
-        console.log('data :>> ', data);
 
         setBookPlatform({
           purchaseBooks: data.purchaseBooks,
@@ -145,7 +153,6 @@ function Book() {
           isLoading: false,
         });
       } catch (error) {
-        console.log('data :>> dda');
         setBookPlatform({
           purchaseBooks: [],
           subscribedBooks: [],

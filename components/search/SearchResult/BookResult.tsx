@@ -39,7 +39,7 @@ const Styled = {
     font-size: 12px;
     color: #929a88;
     padding: 2px 0;
-    display: flex;
+    /* display: flex; */
   `,
   DescBold: styled.div`
     font-weight: 700;
@@ -87,10 +87,10 @@ function BookResult({ book }: Props) {
         <Styled.Info>
           <Styled.Title>{book.title}</Styled.Title>
           <Styled.Description>
-            저자 &nbsp; <Styled.DescBold>{book.author}</Styled.DescBold>
+            저자&nbsp;<strong>{book.author}</strong>
           </Styled.Description>
           <Styled.Description>
-            출판 &nbsp; <Styled.DescBold>{book.publisher}</Styled.DescBold>
+            출판&nbsp;<strong>{book.publisher}</strong>
           </Styled.Description>
           <Styled.Empty />
           <Styled.PlatformButton onClick={onClickButton}>

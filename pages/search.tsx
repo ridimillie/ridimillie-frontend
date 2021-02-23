@@ -103,7 +103,15 @@ function Search() {
       /** Json Server */
       const { data } = await axios.get('http://localhost:3005/search');
 
-      setBookList(data);
+      const bookList = data.map((book: BookType) => {
+        const authorList: string[] = book.author.split('|');
+        return {
+          ...book,
+          author: authorList.join(', '),
+        };
+      });
+
+      setBookList(bookList);
       setSearchState(RESOLVED);
     } catch (error) {
       console.error(error);
@@ -170,9 +178,7 @@ function Search() {
         {searchState === RESOLVED && bookList.length !== 0 && !isSearchCompleted && (
           <FastSearchResult bookList={bookList} />
         )}
-        {searchState === RESOLVED && bookList.length !== 0 && isSearchCompleted && (
-          <SearchResult bookList={bookList} />
-        )}
+        {searchState === RESOLVED && bookList.length !== 0 && isSearchCompleted && <SearchResult bookList={bookList} />}
         {searchState === RESOLVED && bookList.length === 0 && <NoResult />}
         {searchState === REJECTED && <SearchError />}
       </Styled.SearchResultWrapper>

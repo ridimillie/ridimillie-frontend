@@ -42,10 +42,6 @@ type Props = {
 };
 
 function PlatformButton({ platform, price, url }: Props) {
-  const handleClick = () => {
-    alert('아직이다...');
-  };
-
   const PlatformLogo = ({ size }: { size: string }) => {
     if (platform === 'MILLIE' || platform === '밀리의서재') return <img src='/assets/images/ebook-millie.png' width={size} height={size} />;
     if (platform === 'YES24' || platform === '예스24') return <img src='/assets/images/ebook-yes24.png' width={size} height={size} />;
@@ -56,16 +52,18 @@ function PlatformButton({ platform, price, url }: Props) {
   };
 
   return (
-    <Styled.Box onClick={handleClick}>
-      <Styled.BoxLeft>
-        <PlatformLogo size='24px' />
-        <div>{platform}</div>
-      </Styled.BoxLeft>
-      <Styled.BoxRight>
-        <div>{price}</div>
-        <img src='/assets/icons/right-arrow.svg' />
-      </Styled.BoxRight>
-    </Styled.Box>
+    <a href={url} target='_blank'>
+      <Styled.Box>
+        <Styled.BoxLeft>
+          <PlatformLogo size='24px' />
+          <div>{platform}</div>
+        </Styled.BoxLeft>
+        <Styled.BoxRight>
+          <div>{price}</div>
+          <img src='/assets/icons/right-arrow.svg' />
+        </Styled.BoxRight>
+      </Styled.Box>
+    </a>
   );
 }
 

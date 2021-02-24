@@ -96,12 +96,12 @@ function Search() {
 
     try {
       /** Real Server */
-      // const {
-      //   data: { data },
-      // } = await axios.get(`http://15.164.84.113:3000/api?query=${inputValue.trim()}`);
+      const {
+        data: { data },
+      } = await axios.get(`http://15.164.84.113:3000/api?query=${inputValue.trim()}`);
 
       /** Json Server */
-      const { data } = await axios.get('http://localhost:3005/search');
+      // const { data } = await axios.get('http://localhost:3005/search');
 
       const bookList = data.map((book: BookType) => {
         const authorList: string[] = book.author.split('|');
@@ -164,20 +164,12 @@ function Search() {
         </Link>
       </Styled.Header>
       <Styled.Form onSubmit={handleSubmit}>
-        <Styled.Input
-          type='text'
-          placeholder='읽고 싶은 e-book을 검색하세요'
-          value={inputValue}
-          onChange={handleChange}
-          ref={inputRef}
-        />
+        <Styled.Input type='text' placeholder='읽고 싶은 e-book을 검색하세요' value={inputValue} onChange={handleChange} ref={inputRef} />
       </Styled.Form>
       <Styled.SearchResultWrapper>
         {searchState === IDLE && <RecentSearch />}
         {searchState === LOADING && <Loading />}
-        {searchState === RESOLVED && bookList.length !== 0 && !isSearchCompleted && (
-          <FastSearchResult bookList={bookList} />
-        )}
+        {searchState === RESOLVED && bookList.length !== 0 && !isSearchCompleted && <FastSearchResult bookList={bookList} />}
         {searchState === RESOLVED && bookList.length !== 0 && isSearchCompleted && <SearchResult bookList={bookList} />}
         {searchState === RESOLVED && bookList.length === 0 && <NoResult />}
         {searchState === REJECTED && <SearchError />}

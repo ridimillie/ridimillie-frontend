@@ -17,6 +17,7 @@ const Styled = {
       /* sub / greenblack2 */
       color: #2d3029;
       margin-bottom: 14px;
+      letter-spacing: -0.08em;
     }
   `,
   SubCopy: styled.div`

@@ -207,9 +207,13 @@ function Book() {
       <Styled.Contents>
         <Styled.PlatformContainer>
           <img src='/assets/images/subscribe.svg' alt='구독' />
-          {bookPlatform.subscribedBooks.map((service: ServiceType, index) => (
-            <PlatformButton key={index} platform={service.platform} price={service.price} url={service.redirectURL} />
-          ))}
+          {!bookPlatform.isLoading ? (
+            bookPlatform.subscribedBooks.map((service: ServiceType, index) => (
+              <PlatformButton key={index} platform={service.platform} price={service.price} url={service.redirectURL} />
+            ))
+          ) : (
+            <Loading />
+          )}
         </Styled.PlatformContainer>
         <Styled.PlatformContainer>
           <img src='/assets/images/purchase.svg' alt='구매' />

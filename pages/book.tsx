@@ -141,12 +141,12 @@ function Book() {
 
       try {
         /** Real Server */
-        const {
-          data: { data },
-        } = await axios.get(`http://15.164.84.113:3000/api/crawling?title=${book.data?.title}&bid=${book.data?.bid}`);
+        // const {
+        //   data: { data },
+        // } = await axios.get(`http://15.164.84.113:3000/api/crawling?title=${book.data?.title}&bid=${book.data?.bid}`);
 
         /** Json Server */
-        // const { data } = await axios.get('http://localhost:3005/crawler');
+        const { data } = await axios.get('http://localhost:3005/crawler');
 
         setBookPlatform({
           purchaseBooks: data.purchaseBooks,

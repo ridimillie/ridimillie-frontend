@@ -5,7 +5,7 @@ const Styled = {
   MainWrapper: styled.main`
     position: relative;
     margin-top: 160px;
-
+    padding: 0 40px 24px 40px;
     @media (max-width: 768px) {
       margin-top: 44px;
       padding: 36px 0 60px 32px;
@@ -23,20 +23,22 @@ const Styled = {
     transition: 0.3s;
     animation: 0.8s ease fadeIn;
   `,
+
   MainCopy: styled.div`
     font-family: 'Nanum Myeongjo', serif;
     font-size: 32px;
     color: #2d3029;
-    margin-bottom: 32px;
+    margin-bottom: 16px;
     letter-spacing: -0.08em;
     @media (max-width: 768px) {
       font-size: 24px;
       margin-bottom: 14px;
     }
   `,
+
   SubCopy: styled.div`
     color: #929a88;
-    font-size: 18px;
+    font-size: 16px;
     @media (max-width: 768px) {
       font-size: 12px;
       width: 180px;

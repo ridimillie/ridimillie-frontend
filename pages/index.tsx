@@ -19,15 +19,16 @@ const Styled = {
     justify-content: center;
     /* scroll이 0이 아닐때 && background: #f7f2e4; */
     z-index: 999;
+    img {
+      height: 20px;
+    }
   `,
-  Logo: styled.img`
-    height: 20px;
-  `,
+
   MainWrapper: styled.div`
     display: flex;
     flex-direction: column;
-    /* width: 640px; */
-
+    max-width: 960px;
+    margin: 0 auto;
     @media (max-width: 768px) {
       height: 100vh;
       &::before {
@@ -44,6 +45,7 @@ const Styled = {
       }
     }
   `,
+
   ScrollDownBtnWrapper: styled.div`
     display: flex;
     justify-content: center;
@@ -52,6 +54,7 @@ const Styled = {
     bottom: 0px;
     padding: 20px;
   `,
+
   ScrollDownBtn: styled(DownCircleOutlined)`
     display: none;
     @media (max-width: 768px) {
@@ -62,13 +65,13 @@ const Styled = {
       outline: none;
     }
   `,
+
   ScrollTopBtn: styled.div`
     position: fixed;
     bottom: 32px;
     right: 16px;
     width: 26px;
     height: 42px;
-    /* sub / greengray3 */
     background: #bbc2b1;
     border-radius: 20px;
     display: flex;
@@ -79,27 +82,37 @@ const Styled = {
       width: 14px;
     }
   `,
+
   AuthorWrapper: styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     margin-bottom: 70px;
+    @media (max-width: 768px) {
+    }
   `,
+
   AuthorTitle: styled.div`
-    font-family: NanumMyeongjo;
+    font-family: 'Nanum Myeongjo', serif;
     font-weight: 800;
-    font-size: 20px;
     text-align: center;
     letter-spacing: -0.04em;
-    /* sub / greengray1 */
     color: #5a5f54;
+    font-size: 32px;
+    @media (max-width: 768px) {
+      font-size: 20px;
+    }
   `,
+
   Row: styled.div`
     display: flex;
-    width: 260px;
+    width: 420px;
     justify-content: space-between;
     align-items: flex-start;
+    @media (max-width: 768px) {
+      width: 260px;
+    }
   `,
 };
 
@@ -164,10 +177,10 @@ function Home() {
 
   return (
     <>
+      <Styled.Header>
+        <img src='/assets/images/logo.svg' />
+      </Styled.Header>
       <Styled.MainWrapper>
-        <Styled.Header>
-          <Styled.Logo src='/assets/images/logo.svg' />
-        </Styled.Header>
         <Main />
         <MainInput />
         <Styled.ScrollDownBtnWrapper>

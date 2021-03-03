@@ -2,7 +2,6 @@ import React from 'react';
 import styled from '@emotion/styled';
 
 const Styled = {
-  Container: styled.div``,
   AuthorBox: styled.div`
     display: flex;
     flex-direction: column;
@@ -22,7 +21,7 @@ const Styled = {
     margin-bottom: 4px;
   `,
   Name: styled.div`
-    font-family: NanumMyeongjo;
+    font-family: 'Nanum Myeongjo', serif;
     font-weight: 800;
     font-size: 15px;
     text-align: center;
@@ -33,7 +32,9 @@ const Styled = {
   Word: styled.div`
     width: 120px;
     font-size: 10px;
+    line-height: 15px;
     text-align: center;
+    letter-spacing: -0.04em;
     /* sub / greengray1 */
     color: #5a5f54;
   `,
@@ -47,14 +48,12 @@ type AuthorType = {
 
 function Author({ part, name, word }: AuthorType) {
   return (
-    <Styled.Container>
-      <Styled.AuthorBox>
-        <img src='/assets/images/author-background.svg' />
-        <Styled.Part>{part}</Styled.Part>
-        <Styled.Name>{name}</Styled.Name>
-        <Styled.Word>{word}</Styled.Word>
-      </Styled.AuthorBox>
-    </Styled.Container>
+    <Styled.AuthorBox>
+      <img src='/assets/images/author-background.svg' />
+      <Styled.Part>{part}</Styled.Part>
+      <Styled.Name>{name}</Styled.Name>
+      <Styled.Word>{word}</Styled.Word>
+    </Styled.AuthorBox>
   );
 }
 

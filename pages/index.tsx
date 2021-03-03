@@ -119,6 +119,22 @@ const Styled = {
       width: 260px;
     }
   `,
+
+  HomeBackground: styled.img`
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 880px;
+    @media (max-width: 1440px) {
+      width: 800px;
+    }
+    @media (max-width: 1140px) {
+      width: 640px;
+    }
+    @media (max-width: 768px) {
+      display: none;
+    }
+  `,
 };
 
 function useWindowSize() {
@@ -212,6 +228,7 @@ function Home() {
       <Styled.ScrollTopBtn onClick={scrollTop}>
         <img src='/assets/images/up-text.svg' />
       </Styled.ScrollTopBtn>
+      <Styled.HomeBackground src='/assets/images/background-shape.svg' />
     </>
   );
 }

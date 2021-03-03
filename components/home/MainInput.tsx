@@ -7,6 +7,7 @@ const Styled = {
     position: relative;
     height: 96px;
     padding: 18px 40px;
+    z-index: 10;
     @media (max-width: 768px) {
       height: 70px;
       padding: 10px 16px;

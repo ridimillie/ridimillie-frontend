@@ -5,7 +5,7 @@ import styled from '@emotion/styled';
 const Styled = {
   InputWrapper: styled.div`
     position: relative;
-    height: 90px;
+    height: 96px;
     padding: 18px 40px;
     @media (max-width: 768px) {
       height: 70px;
@@ -14,8 +14,8 @@ const Styled = {
   `,
 
   Input: styled.input`
-    padding: 0 20px;
-    width: 600px;
+    padding: 0 24px;
+    width: 640px;
     height: 100%;
     border: 1px solid #fff;
     background-color: #fff;
@@ -26,6 +26,7 @@ const Styled = {
     color: #929a88;
     -webkit-appearance: none;
     -webkit-border-radius: 8px;
+    box-shadow: 4px 4px 40px rgba(0, 0, 0, 0.1);
     &:focus {
       outline: none;
     }

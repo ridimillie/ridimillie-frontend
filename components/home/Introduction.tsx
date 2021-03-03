@@ -1,70 +1,94 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { url } from 'inspector';
 
 const Styled = {
   IntroductionWrapper: styled.section`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 360px 16px 320px 16px;
     @media (max-width: 768px) {
-      padding: 0 16px 48px 16px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      padding: 64px 16px 96px 16px;
     }
   `,
+
   MainCopy: styled.div`
+    font-size: 32px;
+    color: #5a5f54;
+    text-align: center;
+    letter-spacing: -0.04em;
     @media (max-width: 768px) {
       font-size: 16px;
-      //* sub / greengray1 */
-      color: #5a5f54;
       line-height: 20px;
-      text-align: center;
-      letter-spacing: -0.04em;
     }
   `,
-  EBookServices: styled.div`
+
+  ServiceBox: styled.div`
+    display: flex;
+    padding: 56px 0 56px 30px;
     @media (max-width: 768px) {
       padding: 16px 0 16px 30px;
-      display: flex;
     }
   `,
+
   Service: styled.div<{ imgName?: string }>`
+    position: relative;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: ${(props) => `url('/assets/images/ebook-${props.imgName}.png')`};
+    background-size: cover;
     @media (max-width: 768px) {
-      position: relative;
       width: 36px;
       height: 36px;
-      border-radius: 50%;
-      background-color: #ffffff;
-      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
-      background-position: center;
-      background-repeat: no-repeat;
-      /* background-image: url('/assets/images/ebook-millie.svg'); */
-      background-image: ${(props) => `url('/assets/images/ebook-${props.imgName}.png')`};
-      background-size: cover;
     }
   `,
+
   SubCopy: styled.div`
+    text-align: center;
+    color: #929a88;
+    margin-bottom: 320px;
+    letter-spacing: -0.04em;
+    font-size: 20px;
     @media (max-width: 768px) {
+      margin-bottom: 98px;
       font-size: 12px;
       line-height: 16px;
-      text-align: center;
-      /* sub / greengray2 */
-      color: #929a88;
-      margin-bottom: 98px;
-      letter-spacing: -0.04em;
     }
   `,
+
   Description: styled.div`
-    /* font-weight: bold; */
-    font-size: 18px;
-    /* or 14px */
+    padding: 42px 120px;
     text-align: center;
-    /* sub / greenblack2 */
     color: #2d3029;
-    padding: 42px 0;
+    font-size: 32px;
     letter-spacing: -0.04em;
-    /* margin-bottom: 66px; */
+    @media (max-width: 768px) {
+      padding: 42px 0;
+      font-size: 18px;
+    }
+    @media (min-width: 769px) {
+      line-height: 160%;
+      border-radius: 24px;
+      background-color: rgba(255, 255, 255, 0.7);
+      font-family: 'Nanum Myeongjo', serif;
+      box-shadow: 4px 4px 40px rgba(0, 0, 0, 0.1);
+    }
   `,
 };
+
+const serviceList = [
+  { right: '0px', imgName: 'ridi-select' },
+  { right: '6px', imgName: 'millie' },
+  { right: '12px', imgName: 'yes24' },
+  { right: '18px', imgName: 'kyobo' },
+  { right: '24px', imgName: 'naver' },
+  { right: '30px', imgName: 'sam' },
+];
 
 function Introduction() {
   return (
@@ -74,14 +98,11 @@ function Introduction() {
         <br />
         <strong>실시간 통합 검색 결과</strong>를 제공합니다.
       </Styled.MainCopy>
-      <Styled.EBookServices>
-        <Styled.Service imgName='ridi-select' />
-        <Styled.Service style={{ right: '6px' }} imgName='millie' />
-        <Styled.Service style={{ right: '12px' }} imgName='yes24' />
-        <Styled.Service style={{ right: '18px' }} imgName='kyobo' />
-        <Styled.Service style={{ right: '24px' }} imgName='naver' />
-        <Styled.Service style={{ right: '30px' }} imgName='sam' />
-      </Styled.EBookServices>
+      <Styled.ServiceBox>
+        {serviceList.map((service) => (
+          <Styled.Service style={{ right: `${service.right}` }} imgName={service.imgName} />
+        ))}
+      </Styled.ServiceBox>
       <Styled.SubCopy>e-book 구독 및 구매 서비스 6곳의 실시간 검색 결과를 제공합니다.</Styled.SubCopy>
       <Styled.Description>
         읽고 싶은 책이 생기면

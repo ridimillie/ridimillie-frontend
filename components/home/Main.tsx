@@ -4,8 +4,8 @@ import styled from '@emotion/styled';
 const Styled = {
   MainWrapper: styled.main`
     position: relative;
-    margin-top: 160px;
-    padding: 0 40px 24px 40px;
+    margin-top: 220px;
+    padding: 0 40px 40px 40px;
     @media (max-width: 768px) {
       margin-top: 44px;
       padding: 36px 0 60px 32px;
@@ -26,9 +26,9 @@ const Styled = {
 
   MainCopy: styled.div`
     font-family: 'Nanum Myeongjo', serif;
-    font-size: 32px;
+    font-size: 40px;
     color: #2d3029;
-    margin-bottom: 16px;
+    margin-bottom: 24px;
     letter-spacing: -0.08em;
     @media (max-width: 768px) {
       font-size: 24px;
@@ -38,7 +38,7 @@ const Styled = {
 
   SubCopy: styled.div`
     color: #929a88;
-    font-size: 16px;
+    font-size: 18px;
     @media (max-width: 768px) {
       font-size: 12px;
       width: 180px;

@@ -47,12 +47,15 @@ const Styled = {
   `,
 
   ScrollDownBtnWrapper: styled.div`
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    position: absolute;
-    bottom: 0px;
-    padding: 20px;
+    display: none;
+    @media (max-width: 768px) {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      position: absolute;
+      bottom: 0px;
+      padding: 20px;
+    }
   `,
 
   ScrollDownBtn: styled(DownCircleOutlined)`

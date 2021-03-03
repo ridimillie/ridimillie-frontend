@@ -102,15 +102,17 @@ const Styled = {
     text-align: center;
     letter-spacing: -0.04em;
     color: #5a5f54;
-    font-size: 32px;
+    font-size: 36px;
+    margin-bottom: 64px;
     @media (max-width: 768px) {
+      margin-bottom: 0;
       font-size: 20px;
     }
   `,
 
   Row: styled.div`
     display: flex;
-    width: 420px;
+    width: 540px;
     justify-content: space-between;
     align-items: flex-start;
     @media (max-width: 768px) {

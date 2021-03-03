@@ -8,44 +8,40 @@ import Footer from '../components/home/Footer';
 import Author from '../components/home/Authors';
 import { DownCircleOutlined } from '@ant-design/icons';
 import smoothscroll from 'smoothscroll-polyfill';
-import axios from 'axios';
 
 const Styled = {
   Header: styled.div`
-    /* @media (max-width: 768px) { */
     position: fixed;
     top: 0;
     padding: 12px 0;
     width: 100%;
     display: flex;
     justify-content: center;
-    /* background: #f7f2e4; */
+    /* scroll이 0이 아닐때 && background: #f7f2e4; */
     z-index: 999;
-    /* } */
   `,
   Logo: styled.img`
-    @media (max-width: 768px) {
-      height: 20px;
-    }
+    height: 20px;
   `,
   MainWrapper: styled.div`
-    /* height: calc(100vh - 44px); */
-    height: 100vh;
-    /* position: relative; */
+    display: flex;
+    flex-direction: column;
+    /* width: 640px; */
 
-    &::before {
-      content: '';
-      background-image: url('/assets/images/home-background.gif');
-      background-size: cover;
-      /* background-repeat: no-repeat; */
-      /* background-position: center; */
-      opacity: 0.6;
-      position: absolute;
-      top: 0px;
-      left: 0px;
-      right: 0px;
-      bottom: 0px;
-      background-color: #fff;
+    @media (max-width: 768px) {
+      height: 100vh;
+      &::before {
+        content: '';
+        background-image: url('/assets/images/home-background.gif');
+        background-size: cover;
+        opacity: 0.6;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+        background-color: #fff;
+      }
     }
   `,
   ScrollDownBtnWrapper: styled.div`
@@ -57,11 +53,14 @@ const Styled = {
     padding: 20px;
   `,
   ScrollDownBtn: styled(DownCircleOutlined)`
-    font-size: 36px;
-    color: #fff;
-    opacity: 0.8;
-    display: flex;
-    outline: none;
+    display: none;
+    @media (max-width: 768px) {
+      font-size: 36px;
+      color: #fff;
+      opacity: 0.8;
+      display: flex;
+      outline: none;
+    }
   `,
   ScrollTopBtn: styled.div`
     position: fixed;
@@ -100,6 +99,7 @@ const Styled = {
     display: flex;
     width: 260px;
     justify-content: space-between;
+    align-items: flex-start;
   `,
 };
 

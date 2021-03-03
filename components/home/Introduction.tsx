@@ -82,9 +82,7 @@ function Introduction() {
         <Styled.Service style={{ right: '24px' }} imgName='naver' />
         <Styled.Service style={{ right: '30px' }} imgName='sam' />
       </Styled.EBookServices>
-      <Styled.SubCopy>
-        e-book 구독 및 구매 서비스 6곳의 실시간 검색 결과를 제공합니다.
-      </Styled.SubCopy>
+      <Styled.SubCopy>e-book 구독 및 구매 서비스 6곳의 실시간 검색 결과를 제공합니다.</Styled.SubCopy>
       <Styled.Description>
         읽고 싶은 책이 생기면
         <br />

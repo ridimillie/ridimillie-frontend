@@ -182,7 +182,7 @@ function Home() {
           <Author part='디자인' name='배민주' word='"이북 리더기를 항상 들고다니는 디자이너입니다."' />
         </Styled.Row>
         <Styled.Row>
-          <Author part='프론트엔드' name='이정연' word='“스타트업에 관한건 다 좋아합니다. 책 읽는걸 항상 시도합니다^^”' />
+          <Author part='프론트엔드' name='이정연' word='“스타트업에 관한건 다 좋아합니다. 책 읽는걸 항상 시도합니다.”' />
           <Author part='프론트엔드' name='유희수' word='“U희수입니다. 책을 읽는 지성인이 됩시다.”' />
         </Styled.Row>
         <Styled.Row>

@@ -30,7 +30,7 @@ const Styled = {
     margin-bottom: 9px;
   `,
   Word: styled.div`
-    width: 120px;
+    width: 112px;
     font-size: 10px;
     line-height: 15px;
     text-align: center;

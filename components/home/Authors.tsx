@@ -2,54 +2,36 @@ import React from 'react';
 import styled from '@emotion/styled';
 
 const Styled = {
-  Container: styled.div`
-    position: relative;
-    margin-bottom: 32px;
-
-    img {
-      width: 66px;
-      height: 66px;
-    }
-  `,
+  Container: styled.div``,
   AuthorBox: styled.div`
-    position: absolute;
-    width: 66px;
-    height: 66px;
-    top: 0px;
-    left: 0px;
-
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    & > img {
+      position: relative;
+      top: 64px;
+      width: 88px;
+    }
   `,
   Part: styled.div`
-    font-weight: normal;
-    font-size: 9px;
-    line-height: 13px;
+    font-size: 11px;
     text-align: center;
     /* sub / greengray1 */
     color: #5a5f54;
-    margin-bottom: 2px;
+    margin-bottom: 4px;
   `,
   Name: styled.div`
     font-family: NanumMyeongjo;
-    font-style: normal;
     font-weight: 800;
-    font-size: 12px;
-    line-height: 14px;
+    font-size: 15px;
     text-align: center;
     /* sub / greenblack2 */
     color: #2d3029;
+    margin-bottom: 9px;
   `,
   Word: styled.div`
-    position: absolute;
-    top: 56px;
-    left: 6px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    font-weight: normal;
+    width: 120px;
     font-size: 10px;
     text-align: center;
     /* sub / greengray1 */
@@ -66,12 +48,12 @@ type AuthorType = {
 function Author({ part, name, word }: AuthorType) {
   return (
     <Styled.Container>
-      <img src='/assets/images/author-background.svg' />
       <Styled.AuthorBox>
+        <img src='/assets/images/author-background.svg' />
         <Styled.Part>{part}</Styled.Part>
         <Styled.Name>{name}</Styled.Name>
+        <Styled.Word>{word}</Styled.Word>
       </Styled.AuthorBox>
-      <Styled.Word>{word}</Styled.Word>
     </Styled.Container>
   );
 }

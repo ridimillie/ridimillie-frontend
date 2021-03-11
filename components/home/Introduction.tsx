@@ -100,7 +100,7 @@ function Introduction() {
       </Styled.MainCopy>
       <Styled.ServiceBox>
         {serviceList.map((service) => (
-          <Styled.Service style={{ right: `${service.right}` }} imgName={service.imgName} />
+          <Styled.Service key={service.imgName} style={{ right: `${service.right}` }} imgName={service.imgName} />
         ))}
       </Styled.ServiceBox>
       <Styled.SubCopy>e-book 구독 및 구매 서비스 6곳의 실시간 검색 결과를 제공합니다.</Styled.SubCopy>

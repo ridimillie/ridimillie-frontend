@@ -5,7 +5,7 @@ import Main from '../components/home/Main';
 import MainInput from '../components/home/MainInput';
 import Introduction from '../components/home/Introduction';
 import Footer from '../components/home/Footer';
-import Author from '../components/home/Authors';
+import AuthorList from '../components/home/AuthorList';
 import { DownCircleOutlined } from '@ant-design/icons';
 import smoothscroll from 'smoothscroll-polyfill';
 
@@ -83,40 +83,6 @@ const Styled = {
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
     img {
       width: 14px;
-    }
-  `,
-
-  AuthorWrapper: styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 70px;
-    @media (max-width: 768px) {
-    }
-  `,
-
-  AuthorTitle: styled.div`
-    font-family: 'Nanum Myeongjo', serif;
-    font-weight: 800;
-    text-align: center;
-    letter-spacing: -0.04em;
-    color: #5a5f54;
-    font-size: 36px;
-    margin-bottom: 64px;
-    @media (max-width: 768px) {
-      margin-bottom: 0;
-      font-size: 20px;
-    }
-  `,
-
-  Row: styled.div`
-    display: flex;
-    width: 540px;
-    justify-content: space-between;
-    align-items: flex-start;
-    @media (max-width: 768px) {
-      width: 260px;
     }
   `,
 
@@ -209,21 +175,7 @@ function Home() {
         </Styled.ScrollDownBtnWrapper>
       </Styled.MainWrapper>
       <Introduction />
-      <Styled.AuthorWrapper>
-        <Styled.AuthorTitle>엮은이들</Styled.AuthorTitle>
-        <Styled.Row>
-          <Author part='기획' name='김한솔' word='“밀리 구독자면서 리디북스에서 책을 구매하고 주기적으로 교보문고를 방문해요.”' />
-          <Author part='디자인' name='배민주' word='"이북 리더기를 항상 들고다니는 디자이너입니다."' />
-        </Styled.Row>
-        <Styled.Row>
-          <Author part='프론트엔드' name='이정연' word='“스타트업에 관한건 다 좋아합니다. 책 읽는걸 항상 시도합니다.”' />
-          <Author part='프론트엔드' name='유희수' word='“U희수입니다. 책을 읽는 지성인이 됩시다.”' />
-        </Styled.Row>
-        <Styled.Row>
-          <Author part='백엔드, 프론트엔드' name='홍준엽' word='“안녕하세요”' />
-          <Author part='백엔드' name='최영훈' word='“안녕하세요”' />
-        </Styled.Row>
-      </Styled.AuthorWrapper>
+      <AuthorList />
       <Footer />
       <Styled.ScrollTopBtn onClick={scrollTop}>
         <img src='/assets/images/up-text.svg' />

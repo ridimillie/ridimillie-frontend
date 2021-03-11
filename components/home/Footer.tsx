@@ -3,27 +3,37 @@ import styled from '@emotion/styled';
 
 const Styled = {
   FooterContainer: styled.div`
-    /* sub / greengray3 */
     background: #bbc2b1;
     padding: 40px 36px;
-
     & > div {
-      font-size: 10px;
+      font-size: 12px;
       line-height: 180%;
       font-weight: normal;
-      /* sub / greengray1 */
       color: #5a5f54;
+      @media (max-width: 768px) {
+        font-size: 10px;
+      }
     }
   `,
+
   Logo: styled.img`
-    height: 20px;
+    height: 28px;
     margin-bottom: 8px;
+    @media (max-width: 768px) {
+      height: 20px;
+    }
   `,
+
   SNSLink: styled.img`
-    height: 20px;
+    height: 24px;
     margin-bottom: 8px;
-    margin-right: 8px;
+    margin-right: 12px;
+    @media (max-width: 768px) {
+      margin-right: 8px;
+      height: 20px;
+    }
   `,
+
   Description: styled.div`
     margin-bottom: 34px;
   `,

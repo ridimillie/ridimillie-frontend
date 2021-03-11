@@ -18,6 +18,8 @@ const Styled = {
     display: flex;
     justify-content: center;
     /* scroll이 0이 아닐때 && background: #f7f2e4; */
+    backdrop-filter: blur(4px);
+    background-color: rgba(255, 255, 255, 0.05);
     z-index: 999;
     img {
       height: 20px;

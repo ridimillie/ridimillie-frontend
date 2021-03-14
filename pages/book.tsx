@@ -10,17 +10,32 @@ import Head from 'next/head';
 import Loading from '../components/common/Loading';
 
 const Styled = {
+  Root: styled.div`
+    /* &::before {
+      content: '';
+      background-image: url('/assets/images/home-background.gif');
+      background-size: cover;
+      opacity: 0.6;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      right: 0px;
+      bottom: 0px;
+      background-color: #fff;
+    } */
+  `,
+
   Header: styled.div`
     background-color: #f7f2e4;
     z-index: 999;
-    @media (max-width: 768px) {
-      position: fixed;
-      top: 0;
-      padding: 12px 16px;
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-    }
+    position: sticky;
+    top: 0;
+    padding: 12px 16px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    max-width: 960px;
+    margin: 0 auto;
     a {
       display: flex;
       align-items: center;
@@ -28,25 +43,39 @@ const Styled = {
   `,
 
   Logo: styled.img`
+    height: 26px;
     @media (max-width: 768px) {
-      width: 66px;
+      height: 20px;
     }
   `,
 
   SearchIcon: styled.img`
-    width: 24px;
-    height: 24px;
+    width: 26px;
+    height: 26px;
+    @media (max-width: 768px) {
+      width: 24px;
+      height: 24px;
+    }
   `,
 
   BookContainer: styled.div`
-    margin: 48px 32px 0;
-    padding: 24px 0;
+    padding: 64px 32px;
     display: flex;
-    border-bottom: 0.5px solid #bbc2b1;
+    border-bottom: 0.5px solid #d5dccd;
+    max-width: 960px;
+    margin: 32px auto;
     img {
-      width: 80px;
+      width: 120px;
       object-fit: contain;
       filter: drop-shadow(4px 4px 8px rgba(146, 154, 136, 0.15));
+    }
+    @media (max-width: 768px) {
+      padding: 24px 0;
+      margin: 48px 32px 0;
+      img {
+        width: 80px;
+        filter: drop-shadow(4px 4px 8px rgba(146, 154, 136, 0.15));
+      }
     }
   `,
 
@@ -57,25 +86,47 @@ const Styled = {
   `,
 
   BookTitle: styled.div`
-    font-size: 16px;
+    font-size: 28px;
     font-weight: bold;
+    color: #2d3029;
     padding-bottom: 16px;
+    @media (max-width: 768px) {
+      font-size: 16px;
+    }
   `,
 
   BookDescription: styled.div`
-    font-size: 14px;
+    font-size: 18px;
     padding-bottom: 4px;
     color: #929a88;
+    @media (max-width: 768px) {
+      font-size: 14px;
+    }
   `,
 
   Contents: styled.div`
-    margin: 24px 32px;
+    max-width: 960px;
+    padding: 0 16px;
+    margin: 24px auto;
+    display: flex;
+    flex-direction: row;
+    @media (max-width: 768px) {
+      flex-direction: column;
+    }
   `,
 
   PlatformContainer: styled.div`
+    width: 100%;
     margin-top: 24px;
+    padding: 0 16px;
     & > img {
-      width: 35px;
+      width: 56px;
+      padding-bottom: 16px;
+    }
+    @media (max-width: 768px) {
+      & > img {
+        width: 35px;
+      }
     }
   `,
 };
@@ -167,11 +218,16 @@ function Book() {
   }, [book.data]);
 
   return (
-    <div>
+    <Styled.Root>
       <Head>
         <title>{book.data?.title} :: 이책저책</title>
       </Head>
       <Styled.Header>
+        <Link href='/search'>
+          <a>
+            <Styled.SearchIcon src='/assets/icons/arrow-left.svg' />
+          </a>
+        </Link>
         <Link href='/'>
           <a>
             <Styled.Logo src='/assets/images/logo.svg' />
@@ -222,7 +278,7 @@ function Book() {
           ))}
         </Styled.PlatformContainer>
       </Styled.Contents>
-    </div>
+    </Styled.Root>
   );
 }
 

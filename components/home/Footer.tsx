@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 const Styled = {
   FooterContainer: styled.div`
     background: #bbc2b1;
-    padding: 40px 36px;
+    padding: 56px 80px;
     & > div {
       font-size: 12px;
       line-height: 180%;
@@ -13,6 +13,9 @@ const Styled = {
       @media (max-width: 768px) {
         font-size: 10px;
       }
+    }
+    @media (max-width: 768px) {
+      padding: 40px 36px;
     }
   `,
 

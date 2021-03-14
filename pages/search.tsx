@@ -17,7 +17,7 @@ const Styled = {
   Header: styled.div`
     background-color: #f7f2e4;
     z-index: 1;
-    position: fixed;
+    position: sticky;
     top: 0;
     padding: 30px 0;
     width: 100%;
@@ -42,9 +42,10 @@ const Styled = {
     top: 91px;
     max-width: 960px;
     margin: 0 auto;
-    height: 70px;
+    height: 80px;
     padding: 15px 16px;
     @media (max-width: 768px) {
+      height: 70px;
       width: 100%;
       top: 44px;
     }
@@ -55,9 +56,9 @@ const Styled = {
     height: 100%;
     background-color: rgba(255, 255, 255, 0);
     border: none;
-    border-bottom: 1.5px solid #000000;
+    border-bottom: 2px solid #000000;
     padding-left: 34px;
-    font-size: 16px;
+    font-size: 20px;
     line-height: 100%;
     letter-spacing: -0.04em;
     caret-color: #ff8d78;
@@ -66,8 +67,14 @@ const Styled = {
     border-radius: 0;
 
     background-image: url('/assets/icons/search.svg');
-    background-position: 0px 6px;
+    background-position: 0px 10px;
     background-repeat: no-repeat;
+
+    @media (max-width: 768px) {
+      font-size: 16px;
+      background-position: 0px 6px;
+      border-bottom: 1px solid #000000;
+    }
 
     &:focus {
       outline: none;
@@ -82,8 +89,10 @@ const Styled = {
     margin-top: 120px;
     width: 100%;
     padding: 0 16px;
+    max-width: 960px;
+    margin: 96px auto;
     @media (max-width: 768px) {
-      margin-top: 80px;
+      margin-top: 48px;
     }
   `,
 };

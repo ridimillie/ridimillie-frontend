@@ -122,7 +122,7 @@ function AuthorList() {
       </Styled.Row>
       <Styled.Row>
         <Author part='프론트엔드, 백엔드' name='홍준엽' word='“책 책 책 책을 읽읍시다.”' />
-        <Author part='백엔드' name='최영훈' word='“안녕하세요”' />
+        <Author part='백엔드' name='최영훈' word='“5분만 기다려봐. 명언 좀 생각해볼게“' />
       </Styled.Row>
     </Styled.AuthorListWrapper>
   );

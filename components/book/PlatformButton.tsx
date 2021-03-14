@@ -4,33 +4,51 @@ import styled from '@emotion/styled';
 const Styled = {
   Box: styled.div`
     width: 100%;
-    margin: 8px 0;
-    padding: 10px 16px;
+    padding: 16px 20px;
+    margin: 12px 0;
     background: rgba(255, 255, 255, 0.8);
     border-radius: 8px;
     display: flex;
     justify-content: space-between;
     box-shadow: 2px 2px 8px rgba(146, 154, 136, 0.05);
+    @media (max-width: 768px) {
+      margin: 8px 0;
+      padding: 10px 16px;
+    }
   `,
 
   BoxLeft: styled.div`
     display: flex;
     align-items: center;
     font-weight: normal;
-    font-size: 14px;
+    font-size: 16px;
+    color: #2d3029;
     img {
       margin-right: 8px;
+      width: 28px;
+      height: 28px;
       border-radius: 50%;
+    }
+    @media (max-width: 768px) {
+      font-size: 14px;
+      img {
+        margin-right: 8px;
+        border-radius: 50%;
+      }
     }
   `,
 
   BoxRight: styled.div`
     display: flex;
     align-items: center;
-    font-weight: normal;
-    font-size: 14px;
+    font-weight: 600;
+    font-size: 16px;
+    color: #2d3029;
     img {
       padding-left: 16px;
+    }
+    @media (max-width: 768px) {
+      font-size: 14px;
     }
   `,
 };
@@ -60,7 +78,7 @@ function PlatformButton({ platform, price, url }: Props) {
         </Styled.BoxLeft>
         <Styled.BoxRight>
           <div>{price}</div>
-          <img src='/assets/icons/right-arrow.svg' />
+          <img src='/assets/icons/right-arrow-bold.svg' />
         </Styled.BoxRight>
       </Styled.Box>
     </a>

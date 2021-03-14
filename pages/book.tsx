@@ -10,6 +10,21 @@ import Head from 'next/head';
 import Loading from '../components/common/Loading';
 
 const Styled = {
+  Root: styled.div`
+    /* &::before {
+      content: '';
+      background-image: url('/assets/images/home-background.gif');
+      background-size: cover;
+      opacity: 0.6;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      right: 0px;
+      bottom: 0px;
+      background-color: #fff;
+    } */
+  `,
+
   Header: styled.div`
     background-color: #f7f2e4;
     z-index: 999;
@@ -44,11 +59,11 @@ const Styled = {
   `,
 
   BookContainer: styled.div`
-    padding: 24px 32px 64px 32px;
+    padding: 64px 32px;
     display: flex;
-    border-bottom: 0.5px solid #bbc2b1;
+    border-bottom: 0.5px solid #d5dccd;
     max-width: 960px;
-    margin: 64px auto;
+    margin: 32px auto;
     img {
       width: 120px;
       object-fit: contain;
@@ -103,10 +118,16 @@ const Styled = {
   PlatformContainer: styled.div`
     width: 100%;
     margin-top: 24px;
-    & > img {
-      width: 35px;
-    }
     padding: 0 16px;
+    & > img {
+      width: 56px;
+      padding-bottom: 16px;
+    }
+    @media (max-width: 768px) {
+      & > img {
+        width: 35px;
+      }
+    }
   `,
 };
 
@@ -197,7 +218,7 @@ function Book() {
   }, [book.data]);
 
   return (
-    <div>
+    <Styled.Root>
       <Head>
         <title>{book.data?.title} :: 이책저책</title>
       </Head>
@@ -257,7 +278,7 @@ function Book() {
           ))}
         </Styled.PlatformContainer>
       </Styled.Contents>
-    </div>
+    </Styled.Root>
   );
 }
 

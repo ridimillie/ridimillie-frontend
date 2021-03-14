@@ -23,6 +23,12 @@ const Styled = {
     z-index: 999;
     img {
       height: 20px;
+      display: none;
+    }
+    @media (max-width: 768px) {
+      img {
+        display: block;
+      }
     }
   `,
 

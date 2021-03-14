@@ -7,7 +7,6 @@ import Loading from '../components/common/Loading';
 import Link from 'next/link';
 import FastSearchResult from '../components/search/FastSearchResult';
 import SearchResult from '../components/search/SearchResult';
-import Image from 'next/image';
 import { BookType } from '../types';
 import RecentSearch from '../components/search/RecentSearch';
 import SearchError from '../components/search/SearchError';

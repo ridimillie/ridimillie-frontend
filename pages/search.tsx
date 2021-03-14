@@ -56,24 +56,26 @@ const Styled = {
     height: 100%;
     background-color: rgba(255, 255, 255, 0);
     border: none;
-    border-bottom: 2px solid #000000;
+    border-bottom: 2px solid #2d3029;
     padding-left: 34px;
     font-size: 20px;
+    font-weight: bold;
     line-height: 100%;
-    letter-spacing: -0.04em;
+    letter-spacing: -0.02em;
+    color: #2d3029;
     caret-color: #ff8d78;
     -webkit-appearance: none;
     -webkit-border-radius: 0;
     border-radius: 0;
 
     background-image: url('/assets/icons/search.svg');
-    background-position: 0px 10px;
+    background-position: 0px 11px;
     background-repeat: no-repeat;
 
     @media (max-width: 768px) {
       font-size: 16px;
       background-position: 0px 6px;
-      border-bottom: 1px solid #000000;
+      border-bottom: 1px solid #2d3029;
     }
 
     &:focus {
@@ -82,17 +84,17 @@ const Styled = {
 
     &::placeholder {
       color: #bbc2b1;
+      font-weight: 400;
     }
   `,
 
   SearchResultWrapper: styled.div`
-    margin-top: 120px;
     width: 100%;
     padding: 0 16px;
     max-width: 960px;
-    margin: 96px auto;
+    margin: 12px auto;
     @media (max-width: 768px) {
-      margin-top: 48px;
+      margin-top: 0px;
     }
   `,
 };

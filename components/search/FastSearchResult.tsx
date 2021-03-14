@@ -8,31 +8,49 @@ const Styled = {
     width: 100%;
     border-bottom: 1px solid #d0d4ca;
     display: flex;
-    padding: 8px 12px;
+    padding: 16px 16px;
     img {
-      width: 30px;
-      height: 45px;
+      width: 60px;
+      height: 90px;
+      border-radius: 2px;
+      filter: drop-shadow(4px 4px 8px rgba(146, 154, 136, 0.15));
+    }
+    @media (max-width: 768px) {
+      padding: 8px 12px;
+      img {
+        width: 30px;
+        height: 45px;
+      }
     }
   `,
+
   Info: styled.div`
     padding-left: 16px;
     padding-top: 4px;
     overflow: hidden;
     width: calc(100% - 30px);
   `,
+
   Title: styled.div`
     margin-bottom: 2px;
     color: #ff8d78;
     font-weight: 700;
-    font-size: 12px;
+    font-size: 16px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    @media (max-width: 768px) {
+      font-size: 12px;
+    }
   `,
+
   Description: styled.div`
     font-weight: 400;
-    font-size: 10px;
+    font-size: 13px;
     color: #929a88;
+    @media (max-width: 768px) {
+      font-size: 10px;
+    }
   `,
 };
 

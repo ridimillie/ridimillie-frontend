@@ -17,29 +17,39 @@ const Styled = {
   Header: styled.div`
     background-color: #f7f2e4;
     z-index: 1;
+    position: fixed;
+    top: 0;
+    padding: 30px 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
     @media (max-width: 768px) {
-      position: fixed;
-      top: 0;
       padding: 12px 0;
-      width: 100%;
-      display: flex;
-      justify-content: center;
     }
   `,
+
   Logo: styled.img`
+    height: 26px;
     @media (max-width: 768px) {
       height: 20px;
     }
   `,
+
   Form: styled.form`
     z-index: 1;
     background-color: #f7f2e4;
-    position: fixed;
-    top: 44px;
-    width: 100%;
+    position: sticky;
+    top: 91px;
+    max-width: 960px;
+    margin: 0 auto;
     height: 70px;
     padding: 15px 16px;
+    @media (max-width: 768px) {
+      width: 100%;
+      top: 44px;
+    }
   `,
+
   Input: styled.input`
     width: 100%;
     height: 100%;
@@ -67,10 +77,14 @@ const Styled = {
       color: #bbc2b1;
     }
   `,
+
   SearchResultWrapper: styled.div`
     margin-top: 120px;
     width: 100%;
     padding: 0 16px;
+    @media (max-width: 768px) {
+      margin-top: 80px;
+    }
   `,
 };
 

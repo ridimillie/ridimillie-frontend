@@ -8,6 +8,7 @@ import Footer from '../components/home/Footer';
 import AuthorList from '../components/home/AuthorList';
 import { DownCircleOutlined } from '@ant-design/icons';
 import smoothscroll from 'smoothscroll-polyfill';
+import withGoogleAnalytics from '../components/googleAnalytics/withGoogleAnalytics';
 
 const Styled = {
   Header: styled.div`
@@ -170,7 +171,7 @@ function Home() {
     smoothscroll?.polyfill();
   }, []);
 
-  return (
+  const Component = (
     <>
       <Styled.Header>
         <img src='/assets/images/logo.svg' />
@@ -191,6 +192,8 @@ function Home() {
       <Styled.HomeBackground src='/assets/images/background-shape.svg' />
     </>
   );
+
+  return withGoogleAnalytics(Component);
 }
 
 export default Home;

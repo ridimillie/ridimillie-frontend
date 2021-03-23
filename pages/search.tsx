@@ -122,7 +122,7 @@ function Search() {
       /** Real Server */
       const {
         data: { data },
-      } = await axios.get(`http://15.164.84.113:3000/api?query=${inputValue.trim()}`);
+      } = await axios.get(`https://ridimillie.ml/api?query=${inputValue.trim()}`);
 
       /** Json Server */
       // const { data } = await axios.get('http://localhost:3005/search');

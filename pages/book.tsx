@@ -159,9 +159,8 @@ function Book() {
         /** Real Server */
         const {
           data: { data },
-        } = await axios.get(`http://15.164.84.113:3000/api?query=${isbn}`);
+        } = await axios.get(`https://ridimillie.ml/api?query=${isbn}`);
 
-        /** Json Server */
         // const { data } = await axios.get('http://localhost:3005/book');
 
         const bookList = data.map((book: BookType) => {
@@ -180,7 +179,7 @@ function Book() {
       }
     };
 
-    getBookInfo();
+    isbn && getBookInfo();
   }, [isbn]);
 
   React.useEffect(() => {
@@ -192,12 +191,14 @@ function Book() {
 
       try {
         /** Real Server */
-        // const {
-        //   data: { data },
-        // } = await axios.get(`http://15.164.84.113:3000/api/crawling?title=${book.data?.title}&bid=${book.data?.bid}`);
+        const {
+          data: { data },
+        } = await axios.get(`https://ridimillie.ml/api/crawling?title=${book.data?.title}&bid=${book.data?.bid}`);
+
+        console.log(`크롤러`, data);
 
         /** Json Server */
-        const { data } = await axios.get('http://localhost:3005/crawler');
+        // const { data } = await axios.get('http://localhost:3005/crawler');
 
         setBookPlatform({
           purchaseBooks: data.purchaseBooks,
@@ -263,19 +264,23 @@ function Book() {
       <Styled.Contents>
         <Styled.PlatformContainer>
           <img src='/assets/images/subscribe.svg' alt='구독' />
-          {!bookPlatform.isLoading ? (
+          {bookPlatform.isLoading ? (
+            <Loading />
+          ) : (
             bookPlatform.subscribedBooks.map((service: ServiceType, index) => (
               <PlatformButton key={index} platform={service.platform} price={service.price} url={service.redirectURL} />
             ))
-          ) : (
-            <Loading />
           )}
         </Styled.PlatformContainer>
         <Styled.PlatformContainer>
           <img src='/assets/images/purchase.svg' alt='구매' />
-          {bookPlatform.purchaseBooks.map((service: ServiceType, index) => (
-            <PlatformButton key={index} platform={service.platform} price={service.price} url={service.redirectURL} />
-          ))}
+          {bookPlatform.isLoading ? (
+            <Loading />
+          ) : (
+            bookPlatform.purchaseBooks.map((service: ServiceType, index) => (
+              <PlatformButton key={index} platform={service.platform} price={service.price} url={service.redirectURL} />
+            ))
+          )}
         </Styled.PlatformContainer>
       </Styled.Contents>
     </Styled.Root>

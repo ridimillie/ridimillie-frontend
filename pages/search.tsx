@@ -193,8 +193,9 @@ function Search() {
       <Styled.SearchResultWrapper>
         {searchState === IDLE && <RecentSearch />}
         {searchState === LOADING && <Loading />}
-        {searchState === RESOLVED && bookList.length !== 0 && !isSearchCompleted && <FastSearchResult bookList={bookList} />}
-        {searchState === RESOLVED && bookList.length !== 0 && isSearchCompleted && <SearchResult bookList={bookList} />}
+        {searchState === RESOLVED && bookList.length !== 0 && <FastSearchResult bookList={bookList} />}
+        {/* {searchState === RESOLVED && bookList.length !== 0 && !isSearchCompleted && <FastSearchResult bookList={bookList} />} */}
+        {/* {searchState === RESOLVED && bookList.length !== 0 && isSearchCompleted && <SearchResult bookList={bookList} />} */}
         {searchState === RESOLVED && bookList.length === 0 && <NoResult />}
         {searchState === REJECTED && <SearchError />}
       </Styled.SearchResultWrapper>

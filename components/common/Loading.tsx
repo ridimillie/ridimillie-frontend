@@ -5,7 +5,12 @@ import styled from '@emotion/styled';
 const Styled = {
   LoadingWrapper: styled.div`
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
+    & > div {
+      color: #929a88;
+    }
   `,
 
   LoadingImage: styled.img`
@@ -32,9 +37,10 @@ const Styled = {
 
 type LoadingType = {
   type?: string;
+  text?: string;
 };
 
-function Loading({ type = 'book' }: LoadingType) {
+function Loading({ type = 'book', text }: LoadingType) {
   const max: number = 7;
   const min: number = 1;
 
@@ -45,6 +51,7 @@ function Loading({ type = 'book' }: LoadingType) {
       {type === 'book' && <Styled.LoadingBook src='/assets/icons/loading-book.gif' alt='Loading...' />}
       {type === 'random-image' && <Styled.LoadingImage src={`/assets/images/loading-image-${randomNumber}.jpg`} />}
       {type === 'image' && <Styled.LoadingImage src={`/assets/images/loading-image-7.jpg`} />}
+      {text && <div>{text}</div>}
     </Styled.LoadingWrapper>
   );
 }

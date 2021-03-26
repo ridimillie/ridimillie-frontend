@@ -265,21 +265,25 @@ function Book() {
         <Styled.PlatformContainer>
           <img src='/assets/images/subscribe.svg' alt='구독' />
           {bookPlatform.isLoading ? (
-            <Loading />
-          ) : (
+            <Loading text='책 정보를 가져오는 중입니다' />
+          ) : bookPlatform.subscribedBooks.length !== 0 ? (
             bookPlatform.subscribedBooks.map((service: ServiceType, index) => (
               <PlatformButton key={index} platform={service.platform} price={service.price} url={service.redirectURL} />
             ))
+          ) : (
+            <div>결과가 없습니다.</div>
           )}
         </Styled.PlatformContainer>
         <Styled.PlatformContainer>
           <img src='/assets/images/purchase.svg' alt='구매' />
           {bookPlatform.isLoading ? (
-            <Loading />
-          ) : (
+            <Loading text='책 정보를 가져오는 중입니다' />
+          ) : bookPlatform.purchaseBooks.length !== 0 ? (
             bookPlatform.purchaseBooks.map((service: ServiceType, index) => (
               <PlatformButton key={index} platform={service.platform} price={service.price} url={service.redirectURL} />
             ))
+          ) : (
+            <div>결과가 없습니다.</div>
           )}
         </Styled.PlatformContainer>
       </Styled.Contents>

@@ -1,5 +1,4 @@
 import React from 'react';
-import Head from 'next/head';
 import styled from '@emotion/styled';
 import Main from '../components/home/Main';
 import MainInput from '../components/home/MainInput';
@@ -126,7 +125,6 @@ function useWindowSize() {
 
   React.useEffect(() => {
     if (!isClient) {
-      // return false;
       return;
     }
 
@@ -142,20 +140,6 @@ function useWindowSize() {
 }
 
 function Home() {
-  // const [showScroll, setShowScroll] = React.useState(false);
-
-  // React.useEffect(() => {
-  //   const checkScrollTop = () => {
-  //     if (!showScroll && window.pageYOffset > 400) {
-  //       setShowScroll(true);
-  //     } else if (showScroll && window.pageYOffset <= 400) {
-  //       setShowScroll(false);
-  //     }
-  //   };
-
-  //   window.addEventListener('scroll', checkScrollTop);
-  // }, []);
-
   const scrollTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };

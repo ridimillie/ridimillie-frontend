@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import Router from 'next/router';
 import React from 'react';
 import { BookType } from '../../types';
+import { gtag } from '../../lib/utils/GA';
 
 const Styled = {
   bookWrapper: styled.div`
@@ -73,7 +74,8 @@ function FastSearchResult({ bookList }: Props) {
     };
   });
 
-  const handleClick = (isbn: string) => {
+  const handleClick = (isbn: string, title: string) => {
+    gtag('event', 'book', { event_category: 'search', event_label: title, value: title });
     Router.push(`/book?isbn=${isbn}`);
   };
 
@@ -81,7 +83,7 @@ function FastSearchResult({ bookList }: Props) {
     <>
       {refinedBookList
         ? refinedBookList.map((book: BookType) => (
-            <Styled.bookWrapper key={book.bid} onClick={() => handleClick(book.isbn)}>
+            <Styled.bookWrapper key={book.bid} onClick={() => handleClick(book.isbn, book.title)}>
               <img src={book.image} alt={book.title} />
               <Styled.Info>
                 <Styled.Title>{book.title}</Styled.Title>

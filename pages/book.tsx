@@ -8,6 +8,7 @@ import { LoadingOutlined } from '@ant-design/icons';
 import PlatformButton from '../components/book/PlatformButton';
 import Head from 'next/head';
 import Loading from '../components/common/Loading';
+import { gtag } from '../lib/utils/GA';
 
 const Styled = {
   Root: styled.div`
@@ -217,25 +218,40 @@ function Book() {
     book.data && bookPlatformCrawler();
   }, [book.data]);
 
+  const onClickHeader = (evt: React.MouseEvent) => {
+    // @ts-ignore
+    switch (evt.target.alt) {
+      case 'back':
+        gtag('event', 'back', { event_category: 'detail_page', event_label: 'move_page', value: 'move_back' });
+        break;
+      case 'home':
+        gtag('event', 'home', { event_category: 'detail_page', event_label: 'move_page', value: 'move_home_page' });
+        break;
+      case 'search':
+        gtag('event', 'search', { event_category: 'detail_page', event_label: 'move_page', value: 'move_search_page' });
+        break;
+    }
+  };
+
   return (
     <Styled.Root>
       <Head>
         <title>{book.data?.title} :: 이책저책</title>
       </Head>
-      <Styled.Header>
+      <Styled.Header onClick={onClickHeader}>
         <Link href='/search'>
           <a>
-            <Styled.SearchIcon src='/assets/icons/arrow-left.svg' />
+            <Styled.SearchIcon src='/assets/icons/arrow-left.svg' alt='back' />
           </a>
         </Link>
         <Link href='/'>
           <a>
-            <Styled.Logo src='/assets/images/logo.svg' />
+            <Styled.Logo src='/assets/images/logo.svg' alt='home' />
           </a>
         </Link>
         <Link href='/search'>
           <a>
-            <Styled.SearchIcon src='/assets/icons/search.svg' />
+            <Styled.SearchIcon src='/assets/icons/search.svg' alt='search' />
           </a>
         </Link>
       </Styled.Header>

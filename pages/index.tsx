@@ -9,6 +9,7 @@ import AuthorList from '../components/home/AuthorList';
 import { DownCircleOutlined } from '@ant-design/icons';
 import smoothscroll from 'smoothscroll-polyfill';
 import withGoogleAnalytics from '../components/googleAnalytics/withGoogleAnalytics';
+import { gtag } from '../lib/utils/GA';
 
 const Styled = {
   Header: styled.div`
@@ -158,12 +159,14 @@ function Home() {
 
   const scrollTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+    gtag('event', 'scroll_button', { event_category: 'home_page', event_label: 'search', value: 'scroll_up' });
   };
 
   const size = useWindowSize();
 
   const scrollDown = () => {
     window.scrollTo({ top: size.height, behavior: 'smooth' });
+    gtag('event', 'scroll_button', { event_category: 'home_page', event_label: 'search', value: 'scroll_down' });
   };
 
   React.useEffect(() => {

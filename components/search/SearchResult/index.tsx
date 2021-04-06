@@ -1,7 +1,7 @@
 import React from 'react';
 import { BookType } from '../../../types';
 import BookResult from './BookResult';
-
+import { gtag } from '../../../lib/utils/GA';
 interface Props {
   bookList: BookType[];
 }
@@ -20,6 +20,11 @@ function SearchResult({ bookList }: Props) {
       publisher: removeHTML(book.publisher),
     };
   });
+
+  const onClickBookList = (evt: React.MouseEvent) => {
+    // TODO
+    // gtag('event', 'book', { event_category: 'search', event_label: title, value: title });
+  };
 
   return (
     <>

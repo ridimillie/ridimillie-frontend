@@ -6,7 +6,7 @@ declare global {
 
 function gtag(...args: any[]) {
   window.dataLayer.push(arguments);
-  console.log(window.dataLayer);
+  // console.log(window.dataLayer);
 }
 
 export { gtag };

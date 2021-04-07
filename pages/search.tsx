@@ -12,6 +12,7 @@ import RecentSearch from '../components/search/RecentSearch';
 import SearchError from '../components/search/SearchError';
 import NoResult from '../components/search/NoResult';
 import Router, { useRouter } from 'next/router';
+import withGoogleAnalytics from '../components/googleAnalytics/withGoogleAnalytics';
 import { gtag } from '../lib/utils/GA';
 
 const Styled = {
@@ -181,7 +182,7 @@ function Search() {
     gtag('event', 'home', { event_category: 'search_result_page', event_label: 'move_page', value: 'move_home_page' });
   };
 
-  return (
+  return withGoogleAnalytics(
     <div>
       <Head>
         <title>검색 :: 이책저책</title>

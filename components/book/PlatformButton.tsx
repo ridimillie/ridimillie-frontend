@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import { gtag } from '../../lib/utils/GA';
 
 const Styled = {
   Box: styled.div`

@@ -148,6 +148,7 @@ function Search() {
   const deboundedAPI = React.useCallback(
     debounce(() => {
       getSearchBook();
+      Router.push(`/search?q=${inputValue.trim()}`);
       gtag('event', 'search', { event_category: 'search_result_page', event_label: 'search_book', value: inputValue });
     }, 800),
     [inputValue]

@@ -8,7 +8,6 @@ import AuthorList from '../components/home/AuthorList';
 import { DownCircleOutlined } from '@ant-design/icons';
 import smoothscroll from 'smoothscroll-polyfill';
 import withGoogleAnalytics from '../components/googleAnalytics/withGoogleAnalytics';
-import { css } from '@emotion/react';
 
 const Styled = {
   Header: styled.div`
@@ -38,11 +37,6 @@ const Styled = {
     flex-direction: column;
     max-width: 960px;
     margin: 0 auto;
-
-    @media (min-width: 769px) {
-      position: absolute;
-      top: 120px;
-    }
 
     @media (max-width: 768px) {
       height: 100vh;
@@ -116,12 +110,6 @@ const Styled = {
       display: none;
     }
   `,
-
-  VideoWrapper: styled.div<{ height: number | undefined }>`
-    position: relative;
-    /* ${({ height }) => `height: ${height}px`} */
-    overflow: hidden;
-  `,
 };
 
 function useWindowSize() {
@@ -173,14 +161,6 @@ function Home() {
       <Styled.Header>
         <img src='/assets/images/logo.svg' />
       </Styled.Header>
-      {/* {size.width && size.width > 768 && ( */}
-      <Styled.VideoWrapper height={size.height}>
-        <video muted autoPlay loop>
-          <source src='/assets/videos/ebookzbook.mp4' type='video/mp4' />
-          <strong>Your browser does not support the video tag.</strong>
-        </video>
-      </Styled.VideoWrapper>
-      {/* )} */}
       <Styled.MainWrapper>
         <Main />
         <MainInput />
@@ -194,7 +174,7 @@ function Home() {
       <Styled.ScrollTopBtn onClick={scrollTop}>
         <img src='/assets/images/up-text.svg' />
       </Styled.ScrollTopBtn>
-      {/* <Styled.HomeBackground src='/assets/images/background-shape.svg' /> */}
+      <Styled.HomeBackground src='/assets/images/background-shape.svg' />
     </>
   );
 

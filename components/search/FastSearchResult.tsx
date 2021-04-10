@@ -10,6 +10,9 @@ const Styled = {
     border-bottom: 1px solid #d0d4ca;
     display: flex;
     padding: 16px 16px;
+    cursor: pointer;
+    user-select: none;
+    pointer-events: all;
     img {
       width: 60px;
       height: 90px;

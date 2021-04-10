@@ -209,7 +209,7 @@ function Book() {
           subscribedBooks: data.subscribedBooks.map((subscribedBook: any) => ({
             ...subscribedBook,
             serviceType: 'subscribe',
-            titleName: data.purchaseBooks[0].titleName,
+            titleName: data?.purchaseBooks[0]?.titleName,
           })),
           isLoading: false,
         });

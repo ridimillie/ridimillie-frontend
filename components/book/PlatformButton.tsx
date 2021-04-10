@@ -29,6 +29,7 @@ const Styled = {
       width: 28px;
       height: 28px;
       border-radius: 50%;
+      border: 1px solid #e9e9e9;
     }
     @media (max-width: 768px) {
       font-size: 14px;
@@ -65,8 +66,13 @@ function PlatformButton({ platform, price, url }: Props) {
     if (platform === 'MILLIE' || platform === '밀리의서재') return <img src='/assets/images/ebook-millie.png' width={size} height={size} />;
     if (platform === 'YES24' || platform === '예스24') return <img src='/assets/images/ebook-yes24.png' width={size} height={size} />;
     if (platform === 'NAVER') return <img src='/assets/images/ebook-naver.png' width={size} height={size} />;
-    if (platform === 'KYOBO') return <img src='/assets/images/ebook-kyobo.png' width={size} height={size} />;
+    if (platform === 'KYOBO' || platform === '인터넷 교보문고')
+      return <img src='/assets/images/ebook-kyobo.png' width={size} height={size} />;
     if (platform === 'sam베이직') return <img src='/assets/images/ebook-sam.png' width={size} height={size} />;
+    if (platform === '리디북스') return <img src='/assets/images/ebook-ridibooks.png' width={size} height={size} />;
+    if (platform === '인터파크 도서') return <img src='/assets/images/ebook-interpark.png' width={size} height={size} />;
+    if (platform === '알라딘') return <img src='/assets/images/ebook-aladin.png' width={size} height={size} />;
+    if (platform === '네이버 시리즈') return <img src='/assets/images/ebook-naver-series.png' width={size} height={size} />;
     return <img src='/assets/images/ebook-default.svg' width={size} height={size} />;
   };
 

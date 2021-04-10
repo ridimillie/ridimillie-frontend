@@ -12,6 +12,8 @@ import RecentSearch from '../components/search/RecentSearch';
 import SearchError from '../components/search/SearchError';
 import NoResult from '../components/search/NoResult';
 import Router, { useRouter } from 'next/router';
+import withGoogleAnalytics from '../components/googleAnalytics/withGoogleAnalytics';
+import { gtag } from '../lib/utils/GA';
 
 const Styled = {
   Header: styled.div`
@@ -146,6 +148,7 @@ function Search() {
   const deboundedAPI = React.useCallback(
     debounce(() => {
       getSearchBook();
+      gtag('event', 'search', { event_category: 'search_result_page', event_label: 'search_book', value: inputValue });
     }, 800),
     [inputValue]
   );
@@ -175,14 +178,18 @@ function Search() {
     return deboundedAPI.cancel;
   }, [inputValue]);
 
-  return (
+  const onClickLogo = () => {
+    gtag('event', 'home', { event_category: 'search_result_page', event_label: 'move_page', value: 'move_home_page' });
+  };
+
+  return withGoogleAnalytics(
     <div>
       <Head>
         <title>검색 :: 이책저책</title>
       </Head>
       <Styled.Header>
         <Link href='/'>
-          <a>
+          <a onClick={onClickLogo}>
             <Styled.Logo src='/assets/images/logo.svg' />
           </a>
         </Link>

@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import styled from '@emotion/styled';
+import { gtag } from '../../lib/utils/GA';
 
 const Styled = {
   InputWrapper: styled.div`
@@ -40,9 +41,12 @@ const Styled = {
 };
 
 function MainInput() {
+  const onClickInput = () => {
+    gtag('event', 'search', { event_category: 'home_page', event_label: 'move_page', value: 'move_search_page' });
+  };
   return (
     <Link href='/search'>
-      <Styled.InputWrapper>
+      <Styled.InputWrapper onClick={onClickInput}>
         <a>
           <Styled.Input type='text' placeholder='읽고 싶은 e-book을 검색하세요.' />
         </a>

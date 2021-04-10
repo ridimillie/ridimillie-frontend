@@ -8,6 +8,8 @@ import { LoadingOutlined } from '@ant-design/icons';
 import PlatformButton from '../components/book/PlatformButton';
 import Head from 'next/head';
 import Loading from '../components/common/Loading';
+import withGoogleAnalytics from '../components/googleAnalytics/withGoogleAnalytics';
+import { gtag } from '../lib/utils/GA';
 
 const Styled = {
   Root: styled.div`
@@ -135,6 +137,8 @@ type ServiceType = {
   platform: string;
   price: number;
   redirectURL: string;
+  titleName: string;
+  serviceType: 'purchase' | 'subscribe';
 };
 
 function Book() {
@@ -201,8 +205,12 @@ function Book() {
         // const { data } = await axios.get('http://localhost:3005/crawler');
 
         setBookPlatform({
-          purchaseBooks: data.purchaseBooks,
-          subscribedBooks: data.subscribedBooks,
+          purchaseBooks: data.purchaseBooks.map((purchaseBook: any) => ({ ...purchaseBook, serviceType: 'purchase' })),
+          subscribedBooks: data.subscribedBooks.map((subscribedBook: any) => ({
+            ...subscribedBook,
+            serviceType: 'subscribe',
+            titleName: data.purchaseBooks[0].titleName,
+          })),
           isLoading: false,
         });
       } catch (error) {
@@ -218,25 +226,49 @@ function Book() {
     book.data && bookPlatformCrawler();
   }, [book.data]);
 
-  return (
+  const onClickHeader = (evt: React.MouseEvent) => {
+    // @ts-ignore
+    switch (evt.target.alt) {
+      case 'back':
+        gtag('event', 'back', { event_category: 'detail_page', event_label: 'move_page', value: 'move_back' });
+        break;
+      case 'home':
+        gtag('event', 'home', { event_category: 'detail_page', event_label: 'move_page', value: 'move_home_page' });
+        break;
+      case 'search':
+        gtag('event', 'search', { event_category: 'detail_page', event_label: 'move_page', value: 'move_search_page' });
+        break;
+    }
+  };
+  const onClickPlatform = (service: ServiceType) => {
+    gtag('event', service.serviceType, {
+      event_category: 'detail_page',
+      event_label: 'fin',
+      platform: service.platform,
+      book: service.titleName,
+      value: service.platform + '-' + service.titleName,
+    });
+  };
+
+  const Component = (
     <Styled.Root>
       <Head>
         <title>{book.data?.title} :: 이책저책</title>
       </Head>
-      <Styled.Header>
+      <Styled.Header onClick={onClickHeader}>
         <Link href='/search'>
           <a>
-            <Styled.SearchIcon src='/assets/icons/arrow-left.svg' />
+            <Styled.SearchIcon src='/assets/icons/arrow-left.svg' alt='back' />
           </a>
         </Link>
         <Link href='/'>
           <a>
-            <Styled.Logo src='/assets/images/logo.svg' />
+            <Styled.Logo src='/assets/images/logo.svg' alt='home' />
           </a>
         </Link>
         <Link href='/search'>
           <a>
-            <Styled.SearchIcon src='/assets/icons/search.svg' />
+            <Styled.SearchIcon src='/assets/icons/search.svg' alt='search' />
           </a>
         </Link>
       </Styled.Header>
@@ -268,7 +300,9 @@ function Book() {
             <Loading text='책 정보를 가져오는 중입니다' />
           ) : bookPlatform.subscribedBooks.length !== 0 ? (
             bookPlatform.subscribedBooks.map((service: ServiceType, index) => (
-              <PlatformButton key={index} platform={service.platform} price={service.price} url={service.redirectURL} />
+              <div key={index} onClick={() => onClickPlatform(service)}>
+                <PlatformButton platform={service.platform} price={service.price} url={service.redirectURL} />
+              </div>
             ))
           ) : (
             <div>결과가 없습니다.</div>
@@ -280,7 +314,9 @@ function Book() {
             <Loading text='책 정보를 가져오는 중입니다' />
           ) : bookPlatform.purchaseBooks.length !== 0 ? (
             bookPlatform.purchaseBooks.map((service: ServiceType, index) => (
-              <PlatformButton key={index} platform={service.platform} price={service.price} url={service.redirectURL} />
+              <div key={index} onClick={() => onClickPlatform(service)}>
+                <PlatformButton platform={service.platform} price={service.price} url={service.redirectURL} />
+              </div>
             ))
           ) : (
             <div>결과가 없습니다.</div>
@@ -289,6 +325,7 @@ function Book() {
       </Styled.Contents>
     </Styled.Root>
   );
+  return withGoogleAnalytics(Component);
 }
 
 export default Book;

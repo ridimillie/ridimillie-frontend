@@ -78,7 +78,7 @@ function FastSearchResult({ bookList }: Props) {
   });
 
   const handleClick = (isbn: string, title: string) => {
-    gtag('event', 'book', { event_category: 'search', event_label: title, value: title });
+    gtag('event', 'book', { event_category: 'search', event_label: title });
     Router.push(`/book?isbn=${isbn}`);
   };
 

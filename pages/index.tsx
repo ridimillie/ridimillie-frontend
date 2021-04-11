@@ -144,14 +144,14 @@ function useWindowSize() {
 function Home() {
   const scrollTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    gtag('event', 'scroll_button', { event_category: 'home_page', event_label: 'search', value: 'scroll_up' });
+    gtag('event', 'scroll_button', { event_category: 'home_page', event_label: 'top' });
   };
 
   const size = useWindowSize();
 
   const scrollDown = () => {
     window.scrollTo({ top: size.height, behavior: 'smooth' });
-    gtag('event', 'scroll_button', { event_category: 'home_page', event_label: 'search', value: 'scroll_down' });
+    gtag('event', 'scroll_button', { event_category: 'home_page', event_label: 'down' });
   };
 
   React.useEffect(() => {

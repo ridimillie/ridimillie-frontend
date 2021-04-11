@@ -149,7 +149,7 @@ function Search() {
     debounce(() => {
       getSearchBook();
       Router.push(`/search?q=${inputValue.trim()}`);
-      gtag('event', 'search', { event_category: 'search_result_page', event_label: 'search_book', value: inputValue });
+      gtag('event', 'search', { event_category: 'search_result_page' });
     }, 800),
     [inputValue]
   );
@@ -180,7 +180,7 @@ function Search() {
   }, [inputValue]);
 
   const onClickLogo = () => {
-    gtag('event', 'home', { event_category: 'search_result_page', event_label: 'move_page', value: 'move_home_page' });
+    gtag('event', 'home', { event_category: 'search_result_page' });
   };
 
   return withGoogleAnalytics(

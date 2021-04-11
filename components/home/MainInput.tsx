@@ -42,7 +42,7 @@ const Styled = {
 
 function MainInput() {
   const onClickInput = () => {
-    gtag('event', 'search', { event_category: 'home_page', event_label: 'move_page', value: 'move_search_page' });
+    gtag('event', 'search', { event_category: 'home_page' });
   };
   return (
     <Link href='/search'>

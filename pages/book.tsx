@@ -230,23 +230,20 @@ function Book() {
     // @ts-ignore
     switch (evt.target.alt) {
       case 'back':
-        gtag('event', 'back', { event_category: 'detail_page', event_label: 'move_page', value: 'move_back' });
+        gtag('event', 'back', { event_category: 'detail_page' });
         break;
       case 'home':
-        gtag('event', 'home', { event_category: 'detail_page', event_label: 'move_page', value: 'move_home_page' });
+        gtag('event', 'home', { event_category: 'detail_page' });
         break;
       case 'search':
-        gtag('event', 'search', { event_category: 'detail_page', event_label: 'move_page', value: 'move_search_page' });
+        gtag('event', 'search', { event_category: 'detail_page' });
         break;
     }
   };
   const onClickPlatform = (service: ServiceType) => {
     gtag('event', service.serviceType, {
       event_category: 'detail_page',
-      event_label: 'fin',
-      platform: service.platform,
-      book: service.titleName,
-      value: service.platform + '-' + service.titleName,
+      event_label: service.platform + '-' + service.titleName,
     });
   };
 

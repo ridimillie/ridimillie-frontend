@@ -161,11 +161,12 @@ function Book() {
 
       try {
         /** Real Server */
-        const {
-          data: { data },
-        } = await axios.get(`https://ridimillie.ml/api?query=${isbn}`);
+        const { data } = await axios.get(`https://1py63w7227.execute-api.ap-northeast-2.amazonaws.com/dev/naver-api?query=${isbn}`);
 
-        // const { data } = await axios.get('http://localhost:3005/book');
+        /**
+         * Json Server
+         * const { data } = await axios.get('http://localhost:3005/book');
+         */
 
         const bookList = data.map((book: BookType) => {
           const authorList: string[] = book.author.split('|');
@@ -195,21 +196,19 @@ function Book() {
 
       try {
         /** Real Server */
-        const {
-          data: { data },
-        } = await axios.get(`https://ridimillie.ml/api/crawling?title=${book.data?.title}&bid=${book.data?.bid}`);
-
-        console.log(`크롤러`, data);
+        const { data } = await axios.get(
+          `https://1py63w7227.execute-api.ap-northeast-2.amazonaws.com/dev/crawling?title=${book.data?.title}&bid=${book.data?.bid}`
+        );
 
         /** Json Server */
         // const { data } = await axios.get('http://localhost:3005/crawler');
 
         setBookPlatform({
-          purchaseBooks: data.purchaseBooks.map((purchaseBook: any) => ({ ...purchaseBook, serviceType: 'purchase' })),
-          subscribedBooks: data.subscribedBooks.map((subscribedBook: any) => ({
+          purchaseBooks: data.purchase.map((purchaseBook: any) => ({ ...purchaseBook, serviceType: 'purchase' })),
+          subscribedBooks: data.subscribe.map((subscribedBook: any) => ({
             ...subscribedBook,
             serviceType: 'subscribe',
-            titleName: data?.purchaseBooks[0]?.titleName,
+            titleName: data?.purchase[0]?.titleName,
           })),
           isLoading: false,
         });
@@ -230,20 +229,23 @@ function Book() {
     // @ts-ignore
     switch (evt.target.alt) {
       case 'back':
-        gtag('event', 'back', { event_category: 'detail_page' });
+        gtag('event', 'back', { event_category: 'detail_page', event_label: 'move_page', value: 'move_back' });
         break;
       case 'home':
-        gtag('event', 'home', { event_category: 'detail_page' });
+        gtag('event', 'home', { event_category: 'detail_page', event_label: 'move_page', value: 'move_home_page' });
         break;
       case 'search':
-        gtag('event', 'search', { event_category: 'detail_page' });
+        gtag('event', 'search', { event_category: 'detail_page', event_label: 'move_page', value: 'move_search_page' });
         break;
     }
   };
   const onClickPlatform = (service: ServiceType) => {
     gtag('event', service.serviceType, {
       event_category: 'detail_page',
-      event_label: service.platform + '-' + service.titleName,
+      event_label: 'fin',
+      platform: service.platform,
+      book: service.titleName,
+      value: service.platform + '-' + service.titleName,
     });
   };
 

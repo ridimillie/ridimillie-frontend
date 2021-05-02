@@ -122,14 +122,14 @@ function Search() {
 
     try {
       /** Real Server */
-      const {
-        data: { data },
-      } = await axios.get(`https://ridimillie.ml/api?query=${inputValue.trim()}`);
+      const { data } = await axios.get(
+        `https://1py63w7227.execute-api.ap-northeast-2.amazonaws.com/dev/naver-api?query=${inputValue.trim()}`
+      );
 
       /** Json Server */
       // const { data } = await axios.get('http://localhost:3005/search');
 
-      const bookList = data.map((book: BookType) => {
+      const bookList = (data || []).map((book: BookType) => {
         const authorList: string[] = book.author.split('|');
         return {
           ...book,

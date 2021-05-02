@@ -71,7 +71,6 @@ function BookResult({ book }: Props) {
 
   const handleClick = (isbn: string) => (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.stopPropagation();
-    console.log('router');
 
     Router.push(`/book?isbn=${isbn}`);
   };
